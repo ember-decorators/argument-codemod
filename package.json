@@ -35,9 +35,6 @@
     "node": "10.* || 12.* || >= 14"
   },
   "lint-staged": {
-    "*.{js,json}": [
-      "prettier --write"
-    ],
     "*.{js}": [
       "eslint --quiet"
     ]
