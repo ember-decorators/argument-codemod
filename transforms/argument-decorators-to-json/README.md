@@ -61,45 +61,46 @@ class Foo extends Component {
 
 ```
 
-**Output** (<small>[type-decorator-primitives-with-defaults.output.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives-with-defaults.output.js)</small>):
-```js
+**Output** (<small>[type-decorator-primitives-with-defaults.output.json](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives-with-defaults.output.json)</small>):
+```json
 {
-  componentClassName: 'Foo',
-  arguments: {
-    anyType: {
-      type: 'any',
-      value: NaN,
+  "componentClassName": "Foo",
+  "arguments": {
+    "anyType": {
+      "type": "any",
+      "value": "NaN"
     },
-    booleanType: {
-      type: 'boolean',
-      value: true,
+    "booleanType": {
+      "type": "boolean",
+      "value": true
     },
-    nullType: {
-      type: 'null',
-      value: null,
+    "nullType": {
+      "type": "null",
+      "value": null
     },
-    numberType: {
-      type: 'number',
-      value: 1,
+    "numberType": {
+      "type": "number",
+      "value": 1
     },
-    objectType: {
-      type: 'object',
-      value: {},
+    "objectType": {
+      "type": "object",
+      "value": {}
     },
-    stringType: {
-      type: 'string',
-      value: '',
+    "stringType": {
+      "type": "string",
+      "value": ""
     },
-    symbolType: {
-      type: 'symbol',
-      value: Symbol(),
+    "symbolType": {
+      "type": "symbol",
+      "value": "Symbol()"
     },
-    undefinedType: {
-      type: 'undefined',
-      value: undefined,
-    },
+    "undefinedType": {
+      "type": "undefined",
+      "value": "undefined"
+    }
   }
 }
+
 ```
 ---
 <a id="type-decorator-primitives">**type-decorator-primitives**</a>
@@ -142,44 +143,45 @@ class Foo extends Component {
 
 ```
 
-**Output** (<small>[type-decorator-primitives.output.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives.output.js)</small>):
-```js
+**Output** (<small>[type-decorator-primitives.output.json](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives.output.json)</small>):
+```json
 {
-  componentClassName: 'Foo',
-  arguments: {
-    anyType: {
-      type: 'any',
-      value: undefined,
+  "componentClassName": "Foo",
+  "arguments": {
+    "anyType": {
+      "type": "any",
+      "value": "undefined"
     },
-    booleanType: {
-      type: 'boolean',
-      value: undefined,
+    "booleanType": {
+      "type": "boolean",
+      "value": "undefined"
     },
-    nullType: {
-      type: 'null',
-      value: undefined,
+    "nullType": {
+      "type": "null",
+      "value": "undefined"
     },
-    numberType: {
-      type: 'number',
-      value: undefined,
+    "numberType": {
+      "type": "number",
+      "value": "undefined"
     },
-    objectType: {
-      type: 'object',
-      value: undefined,
+    "objectType": {
+      "type": "object",
+      "value": "undefined"
     },
-    stringType: {
-      type: 'string',
-      value: undefined,
+    "stringType": {
+      "type": "string",
+      "value": "undefined"
     },
-    symbolType: {
-      type: 'symbol',
-      value: undefined,
+    "symbolType": {
+      "type": "symbol",
+      "value": "undefined"
     },
-    undefinedType: {
-      type: 'undefined',
-      value: undefined,
-    },
+    "undefinedType": {
+      "type": "undefined",
+      "value": "undefined"
+    }
   }
 }
+
 ```
 <!--FIXTURES_CONTENT_END-->

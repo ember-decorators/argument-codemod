@@ -13,4 +13,4 @@ module.exports = function transformer(file, api) {
     .toSource();
 };
 
-module.exports.type = 'js';
+module.exports.type = 'json';

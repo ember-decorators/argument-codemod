@@ -23,111 +23,115 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 ---
 <a id="type-decorator-primitives-with-defaults">**type-decorator-primitives-with-defaults**</a>
 
-**Input** (<small>[type-decorator-primitives-with-defaults.input.js](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives-with-defaults.input.js)</small>):
-```js
+**Input** (<small>[type-decorator-primitives-with-defaults.input.json](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives-with-defaults.input.json)</small>):
+```json
 {
-  componentClassName: 'Foo',
-  arguments: {
-    anyType: {
-      type: 'any',
-      value: NaN,
+  "componentClassName": "Foo",
+  "arguments": {
+    "anyType": {
+      "type": "any",
+      "value": "NaN"
     },
-    booleanType: {
-      type: 'boolean',
-      value: true,
+    "booleanType": {
+      "type": "boolean",
+      "value": true
     },
-    nullType: {
-      type: 'null',
-      value: null,
+    "nullType": {
+      "type": "null",
+      "value": null
     },
-    numberType: {
-      type: 'number',
-      value: 1,
+    "numberType": {
+      "type": "number",
+      "value": 1
     },
-    objectType: {
-      type: 'object',
-      value: {},
+    "objectType": {
+      "type": "object",
+      "value": {}
     },
-    stringType: {
-      type: 'string',
-      value: '',
+    "stringType": {
+      "type": "string",
+      "value": ""
     },
-    symbolType: {
-      type: 'symbol',
-      value: Symbol(),
+    "symbolType": {
+      "type": "symbol",
+      "value": "Symbol()"
     },
-    undefinedType: {
-      type: 'undefined',
-      value: undefined,
-    },
+    "undefinedType": {
+      "type": "undefined",
+      "value": "undefined"
+    }
   }
 }
+
 ```
 
-**Output** (<small>[type-decorator-primitives-with-defaults.output.js](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives-with-defaults.output.js)</small>):
-```js
-{{arg-type this.anyType "any" path="anyType"}}
-{{arg-type this.booleanType "boolean" path="booleanType"}}
-{{arg-type this.nullType "null" path="nullType"}}
-{{arg-type this.numberType "number" path="numberType"}}
-{{arg-type this.objectType "object" path="objectType"}}
-{{arg-type this.stringType "string" path="stringType"}}
-{{arg-type this.symbolType "symbol" path="symbolType"}}
-{{arg-type this.undefinedType "undefined" path="undefinedType"}}
+**Output** (<small>[type-decorator-primitives-with-defaults.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives-with-defaults.output.hbs)</small>):
+```hbs
+{{arg-type @anyType "any" path="anyType"}}
+{{arg-type @booleanType "boolean" path="booleanType"}}
+{{arg-type @nullType "null" path="nullType"}}
+{{arg-type @numberType "number" path="numberType"}}
+{{arg-type @objectType "object" path="objectType"}}
+{{arg-type @stringType "string" path="stringType"}}
+{{arg-type @symbolType "symbol" path="symbolType"}}
+{{arg-type @undefinedType "undefined" path="undefinedType"}}
+
 ```
 ---
 <a id="type-decorator-primitives">**type-decorator-primitives**</a>
 
-**Input** (<small>[type-decorator-primitives.input.js](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives.input.js)</small>):
-```js
+**Input** (<small>[type-decorator-primitives.input.json](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives.input.json)</small>):
+```json
 {
-  componentClassName: 'Foo',
-  arguments: {
-    anyType: {
-      type: 'any',
-      value: NaN,
+  "componentClassName": "Foo",
+  "arguments": {
+    "anyType": {
+      "type": "any",
+      "value": "NaN"
     },
-    booleanType: {
-      type: 'boolean',
-      value: true,
+    "booleanType": {
+      "type": "boolean",
+      "value": true
     },
-    nullType: {
-      type: 'null',
-      value: null,
+    "nullType": {
+      "type": "null",
+      "value": null
     },
-    numberType: {
-      type: 'number',
-      value: 1,
+    "numberType": {
+      "type": "number",
+      "value": 1
     },
-    objectType: {
-      type: 'object',
-      value: {},
+    "objectType": {
+      "type": "object",
+      "value": {}
     },
-    stringType: {
-      type: 'string',
-      value: '',
+    "stringType": {
+      "type": "string",
+      "value": ""
     },
-    symbolType: {
-      type: 'symbol',
-      value: Symbol(),
+    "symbolType": {
+      "type": "symbol",
+      "value": "Symbol()"
     },
-    undefinedType: {
-      type: 'undefined',
-      value: undefined,
-    },
+    "undefinedType": {
+      "type": "undefined",
+      "value": "undefined"
+    }
   }
 }
+
 ```
 
-**Output** (<small>[type-decorator-primitives.output.js](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives.output.js)</small>):
-```js
-{{arg-type this.anyType "any" path="anyType"}}
-{{arg-type this.booleanType "boolean" path="booleanType"}}
-{{arg-type this.nullType "null" path="nullType"}}
-{{arg-type this.numberType "number" path="numberType"}}
-{{arg-type this.objectType "object" path="objectType"}}
-{{arg-type this.stringType "string" path="stringType"}}
-{{arg-type this.symbolType "symbol" path="symbolType"}}
-{{arg-type this.undefinedType "undefined" path="undefinedType"}}
+**Output** (<small>[type-decorator-primitives.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives.output.hbs)</small>):
+```hbs
+{{arg-type @anyType "any" path="anyType"}}
+{{arg-type @booleanType "boolean" path="booleanType"}}
+{{arg-type @nullType "null" path="nullType"}}
+{{arg-type @numberType "number" path="numberType"}}
+{{arg-type @objectType "object" path="objectType"}}
+{{arg-type @stringType "string" path="stringType"}}
+{{arg-type @symbolType "symbol" path="symbolType"}}
+{{arg-type @undefinedType "undefined" path="undefinedType"}}
+
 ```
 <!--FIXTURES_CONTENT_END-->
