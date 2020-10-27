@@ -1,37 +1,37 @@
 {
   "componentClassName": "Foo",
   "arguments": {
-    "anyType": {
+    "anyArgument": {
       "type": "any",
-      "value": "NaN"
+      "defaultValue": "NaN"
     },
-    "booleanType": {
+    "booleanArgument": {
       "type": "boolean",
-      "value": true
+      "defaultValue": true
     },
-    "nullType": {
+    "nullArgument": {
       "type": "null",
-      "value": null
+      "defaultValue": null
     },
-    "numberType": {
+    "numberArgument": {
       "type": "number",
-      "value": 1
+      "defaultValue": 1
     },
-    "objectType": {
+    "objectArgument": {
       "type": "object",
-      "value": {}
+      "defaultValue": {}
     },
-    "stringType": {
+    "stringArgument": {
       "type": "string",
-      "value": ""
+      "defaultValue": ""
     },
-    "symbolType": {
+    "symbolArgument": {
       "type": "symbol",
-      "value": "Symbol()"
+      "defaultValue": "Symbol()"
     },
-    "undefinedType": {
+    "undefinedArgument": {
       "type": "undefined",
-      "value": "undefined"
+      "defaultValue": "undefined"
     }
   }
 }

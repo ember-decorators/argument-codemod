@@ -30,35 +30,35 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
   "arguments": {
     "anyType": {
       "type": "any",
-      "value": "NaN"
+      "defaultValue": "NaN"
     },
     "booleanType": {
       "type": "boolean",
-      "value": true
+      "defaultValue": true
     },
     "nullType": {
       "type": "null",
-      "value": null
+      "defaultValue": null
     },
     "numberType": {
       "type": "number",
-      "value": 1
+      "defaultValue": 1
     },
     "objectType": {
       "type": "object",
-      "value": {}
+      "defaultValue": {}
     },
     "stringType": {
       "type": "string",
-      "value": ""
+      "defaultValue": ""
     },
     "symbolType": {
       "type": "symbol",
-      "value": "Symbol()"
+      "defaultValue": "Symbol()"
     },
     "undefinedType": {
       "type": "undefined",
-      "value": "undefined"
+      "defaultValue": "undefined"
     }
   }
 }
@@ -87,35 +87,35 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
   "arguments": {
     "anyType": {
       "type": "any",
-      "value": "NaN"
+      "defaultValue": "NaN"
     },
     "booleanType": {
       "type": "boolean",
-      "value": true
+      "defaultValue": true
     },
     "nullType": {
       "type": "null",
-      "value": null
+      "defaultValue": null
     },
     "numberType": {
       "type": "number",
-      "value": 1
+      "defaultValue": 1
     },
     "objectType": {
       "type": "object",
-      "value": {}
+      "defaultValue": {}
     },
     "stringType": {
       "type": "string",
-      "value": ""
+      "defaultValue": ""
     },
     "symbolType": {
       "type": "symbol",
-      "value": "Symbol()"
+      "defaultValue": "Symbol()"
     },
     "undefinedType": {
       "type": "undefined",
-      "value": "undefined"
+      "defaultValue": "undefined"
     }
   }
 }

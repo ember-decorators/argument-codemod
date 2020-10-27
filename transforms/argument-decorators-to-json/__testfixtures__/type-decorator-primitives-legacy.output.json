@@ -1,35 +1,35 @@
 {
   "componentClassName": "Foo",
   "arguments": {
-    "anyArgument": {
+    "anyType": {
       "type": "any",
       "defaultValue": "undefined"
     },
-    "booleanArgument": {
+    "booleanType": {
       "type": "boolean",
       "defaultValue": "undefined"
     },
-    "nullArgument": {
+    "nullType": {
       "type": "null",
       "defaultValue": "undefined"
     },
-    "numberArgument": {
+    "numberType": {
       "type": "number",
       "defaultValue": "undefined"
     },
-    "objectArgument": {
+    "objectType": {
       "type": "object",
       "defaultValue": "undefined"
     },
-    "stringArgument": {
+    "stringType": {
       "type": "string",
       "defaultValue": "undefined"
     },
-    "symbolArgument": {
+    "symbolType": {
       "type": "symbol",
       "defaultValue": "undefined"
     },
-    "undefinedArgument": {
+    "undefinedType": {
       "type": "undefined",
       "defaultValue": "undefined"
     }

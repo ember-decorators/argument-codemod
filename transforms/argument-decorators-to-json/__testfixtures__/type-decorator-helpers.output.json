@@ -1,0 +1,52 @@
+{
+  "componentClassName": "Foo",
+  "arguments": {
+    "optionalArgument": {
+      "type": {
+        "optional": "Date"
+      },
+      "defaultValue": "undefined"
+    },
+    "arrayArgument": {
+      "type": {
+        "arrayOf": "string"
+      },
+      "defaultValue": "undefined"
+    },
+    "oneArgument": {
+      "type": {
+        "oneOf": ["red", "blue", "yellow"]
+      },
+      "defaultValue": "undefined"
+    },
+    "shapeArgument": {
+      "type": {
+        "shapeOf": {
+          "id": "string"
+        }
+      },
+      "defaultValue": "undefined"
+    },
+    "unionArgument": {
+      "type": {
+        "unionOf": ["number", "string"]
+      },
+      "defaultValue": "undefined"
+    },
+    "nestedArgument": {
+      "type": {
+        "unionOf": [
+          "string",
+          {
+            "shapeOf": {
+              "id": {
+                "optional": "string"
+              }
+            }
+          }
+        ]
+      },
+      "defaultValue": "undefined"
+    }
+  }
+}

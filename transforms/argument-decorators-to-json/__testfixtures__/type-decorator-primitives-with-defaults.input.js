@@ -1,33 +1,25 @@
 class Foo extends Component {
-  @argument
-  @type('any')
-  anyType = NaN;
+  @argument('any')
+  anyArgument = NaN;
 
-  @argument
-  @type('boolean')
-  booleanType = true;
+  @argument('boolean')
+  booleanArgument = true;
 
-  @argument
-  @type('null')
-  nullType = null;
+  @argument('null')
+  nullArgument = null;
 
-  @argument
-  @type('number')
-  numberType = 1;
+  @argument('number')
+  numberArgument = 1;
 
-  @argument
-  @type('object')
-  objectType = {};
+  @argument('object')
+  objectArgument = {};
 
-  @argument
-  @type('string')
-  stringType = '';
+  @argument('string')
+  stringArgument = '';
 
-  @argument
-  @type('symbol')
-  symbolType = Symbol();
+  @argument('symbol')
+  symbolArgument = Symbol();
 
-  @argument
-  @type('undefined')
-  undefinedType = undefined;
+  @argument('undefined')
+  undefinedArgument = undefined;
 }
