@@ -1,3 +1,15 @@
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
+
+class MyClass {
+  constructor() {}
+}
+const myClassInstance = new MyClass();
+
 class Foo extends Component {
   @argument
   @type('any')
@@ -30,4 +42,24 @@ class Foo extends Component {
   @argument
   @type('undefined')
   undefinedType = undefined;
+
+  @argument
+  @type(Action)
+  actionType = () => {};
+
+  @argument
+  @type(ClassicAction)
+  classicActionType = 'myActionName';
+
+  @argument
+  @type(Element)
+  elementType = window.Element;
+
+  @argument
+  @type(Node)
+  nodeType = window.Node;
+
+  @argument
+  @type(MyClass)
+  classType = myClassInstance;
 }

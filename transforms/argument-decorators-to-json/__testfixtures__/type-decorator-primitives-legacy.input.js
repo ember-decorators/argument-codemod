@@ -1,3 +1,12 @@
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
+
+class MyClass {}
+
 class Foo extends Component {
   @argument
   @type('any')
@@ -30,4 +39,24 @@ class Foo extends Component {
   @argument
   @type('undefined')
   undefinedType;
+
+  @argument
+  @type(Action)
+  actionArgument;
+
+  @argument
+  @type(ClassicAction)
+  classicActionArgument;
+
+  @argument
+  @type(Element)
+  elementArgument;
+
+  @argument
+  @type(Node)
+  nodeArgument;
+
+  @argument
+  @type(MyClass)
+  classArgument;
 }

@@ -2,36 +2,43 @@
   "componentClassName": "Foo",
   "arguments": {
     "anyArgument": {
-      "type": "any",
-      "defaultValue": "undefined"
+      "type": "\"any\""
     },
     "booleanArgument": {
-      "type": "boolean",
-      "defaultValue": "undefined"
+      "type": "\"boolean\""
     },
     "nullArgument": {
-      "type": "null",
-      "defaultValue": "undefined"
+      "type": "\"null\""
     },
     "numberArgument": {
-      "type": "number",
-      "defaultValue": "undefined"
+      "type": "\"number\""
     },
     "objectArgument": {
-      "type": "object",
-      "defaultValue": "undefined"
+      "type": "\"object\""
     },
     "stringArgument": {
-      "type": "string",
-      "defaultValue": "undefined"
+      "type": "\"string\""
     },
     "symbolArgument": {
-      "type": "symbol",
-      "defaultValue": "undefined"
+      "type": "\"symbol\""
     },
     "undefinedArgument": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+      "type": "\"undefined\""
+    },
+    "actionArgument": {
+      "type": "Action"
+    },
+    "classicActionArgument": {
+      "type": "ClassicAction"
+    },
+    "elementArgument": {
+      "type": "Element"
+    },
+    "nodeArgument": {
+      "type": "Node"
+    },
+    "classArgument": {
+      "type": "MyClass"
     }
   }
 }

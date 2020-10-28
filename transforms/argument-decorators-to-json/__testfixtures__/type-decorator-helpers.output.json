@@ -2,51 +2,51 @@
   "componentClassName": "Foo",
   "arguments": {
     "optionalArgument": {
-      "type": {
-        "optional": "Date"
-      },
-      "defaultValue": "undefined"
+      "type": "optional",
+      "args": "Date"
     },
     "arrayArgument": {
-      "type": {
-        "arrayOf": "string"
-      },
-      "defaultValue": "undefined"
+      "type": "arrayOf",
+      "args": "\"string\""
     },
     "oneArgument": {
-      "type": {
-        "oneOf": ["red", "blue", "yellow"]
-      },
-      "defaultValue": "undefined"
+      "type": "oneOf",
+      "args": [
+        "\"red\"",
+        "\"blue\"",
+        "\"yellow\""
+      ]
     },
     "shapeArgument": {
-      "type": {
-        "shapeOf": {
-          "id": "string"
+      "type": "shapeOf",
+      "args": {
+        "id": {
+          "type": "\"string\""
         }
-      },
-      "defaultValue": "undefined"
+      }
     },
     "unionArgument": {
       "type": {
-        "unionOf": ["number", "string"]
-      },
-      "defaultValue": "undefined"
+        "unionOf": [
+          { "type": "\"number\"" },
+          { "type": "\"string\"" }
+        ]
+      }
     },
     "nestedArgument": {
-      "type": {
-        "unionOf": [
-          "string",
-          {
-            "shapeOf": {
-              "id": {
-                "optional": "string"
-              }
+      "type": "unionOf",
+      "args": [
+        { "type": "\"string\"" },
+        {
+          "type": "shapeOf",
+          "args": {
+            "id": {
+              "type": "optional",
+              "args": "\"string\""
             }
           }
-        ]
-      },
-      "defaultValue": "undefined"
+        }
+      ]
     }
   }
 }
