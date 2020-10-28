@@ -6,3 +6,8 @@
 {{arg-type @stringType "string" path="stringType"}}
 {{arg-type @symbolType "symbol" path="symbolType"}}
 {{arg-type @undefinedType "undefined" path="undefinedType"}}
+{{arg-type @actionType 'function' path="actionType"}}
+{{arg-type @classicActionType (unionOf 'string', 'function') path="classicActionType"}}
+{{arg-type @elementType (instanceOf "Element") path="elementType"}}
+{{arg-type @nodeType (instanceOf "Node") path="nodeType"}}
+{{arg-type @classType (instanceOf this.__MyClass__) path="classType"}}

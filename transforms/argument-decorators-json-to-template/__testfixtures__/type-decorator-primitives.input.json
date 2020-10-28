@@ -1,37 +1,45 @@
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives",
   "arguments": {
-    "anyType": {
-      "type": "any",
-      "defaultValue": "NaN"
+    "anyArgument": {
+      "type": "\"any\""
     },
-    "booleanType": {
-      "type": "boolean",
-      "defaultValue": true
+    "booleanArgument": {
+      "type": "\"boolean\""
     },
-    "nullType": {
-      "type": "null",
-      "defaultValue": null
+    "nullArgument": {
+      "type": "\"null\""
     },
-    "numberType": {
-      "type": "number",
-      "defaultValue": 1
+    "numberArgument": {
+      "type": "\"number\""
     },
-    "objectType": {
-      "type": "object",
-      "defaultValue": {}
+    "objectArgument": {
+      "type": "\"object\""
     },
-    "stringType": {
-      "type": "string",
-      "defaultValue": ""
+    "stringArgument": {
+      "type": "\"string\""
     },
-    "symbolType": {
-      "type": "symbol",
-      "defaultValue": "Symbol()"
+    "symbolArgument": {
+      "type": "\"symbol\""
     },
-    "undefinedType": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+    "undefinedArgument": {
+      "type": "\"undefined\""
+    },
+    "actionArgument": {
+      "type": "Action"
+    },
+    "classicActionArgument": {
+      "type": "ClassicAction"
+    },
+    "elementArgument": {
+      "type": "Element"
+    },
+    "nodeArgument": {
+      "type": "Node"
+    },
+    "classArgument": {
+      "type": "MyClass"
     }
   }
 }

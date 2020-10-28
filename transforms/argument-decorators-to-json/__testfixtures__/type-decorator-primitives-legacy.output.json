@@ -1,5 +1,6 @@
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives-legacy",
   "arguments": {
     "anyType": {
       "type": "\"any\""

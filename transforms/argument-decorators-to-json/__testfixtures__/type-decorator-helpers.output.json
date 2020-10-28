@@ -1,5 +1,6 @@
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-helpers",
   "arguments": {
     "optionalArgument": {
       "type": "optional",
