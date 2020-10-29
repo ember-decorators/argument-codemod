@@ -19,6 +19,7 @@ node ./bin/cli.js <TRANSFORM NAME> path/of/files/ or/some**/*glob.js
 ## Transforms
 
 <!--TRANSFORMS_START-->
+* [argument-decorators-cleanup](transforms/argument-decorators-cleanup/README.md)
 * [argument-decorators-json-to-template](transforms/argument-decorators-json-to-template/README.md)
 * [argument-decorators-to-json](transforms/argument-decorators-to-json/README.md)
 <!--TRANSFORMS_END-->

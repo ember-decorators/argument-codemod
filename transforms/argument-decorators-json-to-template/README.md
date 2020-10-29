@@ -15,84 +15,97 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 ## Input / Output
 
 <!--FIXTURES_TOC_START-->
-* [type-decorator-primitives-with-defaults](#type-decorator-primitives-with-defaults)
-* [type-decorator-primitives](#type-decorator-primitives)
+* [arguments-with-helpers](#arguments-with-helpers)
+* [arguments-with-primitives](#arguments-with-primitives)
 <!--FIXTURES_TOC_END-->
 
 <!--FIXTURES_CONTENT_START-->
 ---
-<a id="type-decorator-primitives-with-defaults">**type-decorator-primitives-with-defaults**</a>
+<a id="arguments-with-helpers">**arguments-with-helpers**</a>
 
-**Input** (<small>[type-decorator-primitives-with-defaults.input.json](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives-with-defaults.input.json)</small>):
+**Input** (<small>[arguments-with-helpers.input.json](transforms/argument-decorators-json-to-template/__testfixtures__/arguments-with-helpers.input.json)</small>):
 ```json
 {
   "componentClassName": "Foo",
-  "componentFileName": "type-decorator-primitives-with-defaults",
+  "componentFileName": "type-decorator-helpers",
   "arguments": {
-    "anyArgument": {
-      "type": "\"any\""
+    "optionalArgument": {
+      "type": "optional",
+      "args": [
+        "Date"
+      ]
     },
-    "booleanArgument": {
-      "type": "\"boolean\""
+    "arrayArgument": {
+      "type": "arrayOf",
+      "args": [
+        "\"string\""
+      ]
     },
-    "nullArgument": {
-      "type": "\"null\""
+    "oneArgument": {
+      "type": "oneOf",
+      "args": [
+        "\"red\"",
+        "\"blue\"",
+        "\"yellow\""
+      ]
     },
-    "numberArgument": {
-      "type": "\"number\""
+    "shapeArgument": {
+      "type": "shapeOf",
+      "args": [
+        {
+          "id": {
+            "type": "\"string\""
+          }
+        }
+      ]
     },
-    "objectArgument": {
-      "type": "\"object\""
+    "unionArgument": {
+      "type": "unionOf",
+      "args": [
+        {
+          "type": "\"number\""
+        },
+        {
+          "type": "\"string\""
+        }
+      ]
     },
-    "stringArgument": {
-      "type": "\"string\""
-    },
-    "symbolArgument": {
-      "type": "\"symbol\""
-    },
-    "undefinedArgument": {
-      "type": "\"undefined\""
-    },
-    "actionArgument": {
-      "type": "Action"
-    },
-    "classicActionArgument": {
-      "type": "ClassicAction"
-    },
-    "elementArgument": {
-      "type": "Element"
-    },
-    "nodeArgument": {
-      "type": "Node"
-    },
-    "classArgument": {
-      "type": "MyClass"
+    "nestedArgument": {
+      "type": "unionOf",
+      "args": [
+        {
+          "type": "\"string\""
+        },
+        {
+          "type": "shapeOf",
+          "args": [
+            {
+              "id": {
+                "type": "optional",
+                "args": ["\"string\""]
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }
-
 ```
 
-**Output** (<small>[type-decorator-primitives-with-defaults.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives-with-defaults.output.hbs)</small>):
+**Output** (<small>[arguments-with-helpers.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/arguments-with-helpers.output.hbs)</small>):
 ```hbs
-{{arg-type @anyType "any" path="anyType"}}
-{{arg-type @booleanType "boolean" path="booleanType"}}
-{{arg-type @nullType "null" path="nullType"}}
-{{arg-type @numberType "number" path="numberType"}}
-{{arg-type @objectType "object" path="objectType"}}
-{{arg-type @stringType "string" path="stringType"}}
-{{arg-type @symbolType "symbol" path="symbolType"}}
-{{arg-type @undefinedType "undefined" path="undefinedType"}}
-{{arg-type @actionType 'function' path="actionType"}}
-{{arg-type @classicActionType (unionOf 'string', 'function') path="classicActionType"}}
-{{arg-type @elementType (instanceOf "Element") path="elementType"}}
-{{arg-type @nodeType (instanceOf "Node") path="nodeType"}}
-{{arg-type @classType (instanceOf this.__MyClass__) path="classType"}}
+{{arg-type @optionalArgument (optional (instance-of this.__Date)) path="optionalArgument"}}
+{{arg-type @arrayArgument (array-of 'string') path="arrayArgument"}}
+{{arg-type @oneArgument (one-of 'red' 'blue' 'yellow') path="oneArgument"}}
+{{arg-type @shapeArgument (shape-of id='string') path="shapeArgument"}}
+{{arg-type @unionArgument (union-of 'number' 'string') path="unionArgument"}}
+{{arg-type @nestedArgument (union-of 'string' (shape-of id=(optional 'string'))) path="nestedArgument"}}
 ```
 ---
-<a id="type-decorator-primitives">**type-decorator-primitives**</a>
+<a id="arguments-with-primitives">**arguments-with-primitives**</a>
 
-**Input** (<small>[type-decorator-primitives.input.json](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives.input.json)</small>):
+**Input** (<small>[arguments-with-primitives.input.json](transforms/argument-decorators-json-to-template/__testfixtures__/arguments-with-primitives.input.json)</small>):
 ```json
 {
   "componentClassName": "Foo",
@@ -141,7 +154,7 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 }
 ```
 
-**Output** (<small>[type-decorator-primitives.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives.output.hbs)</small>):
+**Output** (<small>[arguments-with-primitives.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/arguments-with-primitives.output.hbs)</small>):
 ```hbs
 {{arg-type @anyArgument "any" path="anyArgument"}}
 {{arg-type @booleanArgument "boolean" path="booleanArgument"}}
@@ -152,9 +165,9 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 {{arg-type @symbolArgument "symbol" path="symbolArgument"}}
 {{arg-type @undefinedArgument "undefined" path="undefinedArgument"}}
 {{arg-type @actionArgument 'function' path="actionArgument"}}
-{{arg-type @classicActionArgument (unionOf 'string', 'function') path="classicActionArgument"}}
-{{arg-type @elementArgument (instanceOf "Element") path="elementArgument"}}
-{{arg-type @nodeArgument (instanceOf "Node") path="nodeArgument"}}
-{{arg-type @classArgument (instanceOf this.__MyClass__) path="classArgument"}}
+{{arg-type @classicActionArgument (union-of 'string', 'function') path="classicActionArgument"}}
+{{arg-type @elementArgument (instance-of this.__Element) path="elementArgument"}}
+{{arg-type @nodeArgument (instance-of this.__Node) path="nodeArgument"}}
+{{arg-type @classArgument (instance-of this.__MyClass) path="classArgument"}}
 ```
 <!--FIXTURES_CONTENT_END-->
