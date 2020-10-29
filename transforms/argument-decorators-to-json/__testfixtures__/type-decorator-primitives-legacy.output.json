@@ -2,43 +2,43 @@
   "componentClassName": "Foo",
   "componentFileName": "type-decorator-primitives-legacy",
   "arguments": {
-    "anyType": {
+    "anyArgument": {
       "type": "\"any\""
     },
-    "booleanType": {
+    "booleanArgument": {
       "type": "\"boolean\""
     },
-    "nullType": {
+    "nullArgument": {
       "type": "\"null\""
     },
-    "numberType": {
+    "numberArgument": {
       "type": "\"number\""
     },
-    "objectType": {
+    "objectArgument": {
       "type": "\"object\""
     },
-    "stringType": {
+    "stringArgument": {
       "type": "\"string\""
     },
-    "symbolType": {
+    "symbolArgument": {
       "type": "\"symbol\""
     },
-    "undefinedType": {
+    "undefinedArgument": {
       "type": "\"undefined\""
     },
-    "actionType": {
+    "actionArgument": {
       "type": "Action"
     },
-    "classicActionType": {
+    "classicActionArgument": {
       "type": "ClassicAction"
     },
-    "elementType": {
+    "elementArgument": {
       "type": "Element"
     },
-    "nodeType": {
+    "nodeArgument": {
       "type": "Node"
     },
-    "classType": {
+    "classArgument": {
       "type": "MyClass"
     }
   }

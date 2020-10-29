@@ -1,25 +1,25 @@
 class Foo extends Component {
   @argument
   @type(optional(Date))
-  optionalType;
+  optionalArgument;
 
   @argument
   @type(arrayOf('string'))
-  arrayType;
+  arrayArgument;
 
   @argument
   @type(oneOf('red', 'blue', 'yellow'))
-  oneType;
+  oneArgument;
 
   @argument
   @type(shapeOf({ id: 'string' }))
-  shapeType;
+  shapeArgument;
 
   @argument
   @type(unionOf('number', 'string'))
-  unionType;
+  unionArgument;
 
   @argument
   @type(unionOf('string', shapeOf({ id: optional('string') })))
-  nestedType;
+  nestedArgument;
 }

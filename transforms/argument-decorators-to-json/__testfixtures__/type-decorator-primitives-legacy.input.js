@@ -10,35 +10,35 @@ class MyClass {}
 class Foo extends Component {
   @argument
   @type('any')
-  anyType;
+  anyArgument;
 
   @argument
   @type('boolean')
-  booleanType;
+  booleanArgument;
 
   @argument
   @type('null')
-  nullType;
+  nullArgument;
 
   @argument
   @type('number')
-  numberType;
+  numberArgument;
 
   @argument
   @type('object')
-  objectType;
+  objectArgument;
 
   @argument
   @type('string')
-  stringType;
+  stringArgument;
 
   @argument
   @type('symbol')
-  symbolType;
+  symbolArgument;
 
   @argument
   @type('undefined')
-  undefinedType;
+  undefinedArgument;
 
   @argument
   @type(Action)

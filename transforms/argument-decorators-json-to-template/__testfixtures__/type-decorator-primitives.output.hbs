@@ -7,7 +7,7 @@
 {{arg-type @symbolArgument "symbol" path="symbolArgument"}}
 {{arg-type @undefinedArgument "undefined" path="undefinedArgument"}}
 {{arg-type @actionArgument 'function' path="actionArgument"}}
-{{arg-type @classicActionArgument (unionOf 'string', 'function') path="classicActionArgument"}}
-{{arg-type @elementArgument (instanceOf "Element") path="elementArgument"}}
-{{arg-type @nodeArgument (instanceOf "Node") path="nodeArgument"}}
-{{arg-type @classArgument (instanceOf this.__MyClass__) path="classArgument"}}
+{{arg-type @classicActionArgument (union-of 'string', 'function') path="classicActionArgument"}}
+{{arg-type @elementArgument (instance-of this.__Element) path="elementArgument"}}
+{{arg-type @nodeArgument (instance-of this.__Node) path="nodeArgument"}}
+{{arg-type @classArgument (instance-of this.__MyClass) path="classArgument"}}
