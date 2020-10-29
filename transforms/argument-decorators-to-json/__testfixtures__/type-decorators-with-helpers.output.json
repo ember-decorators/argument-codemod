@@ -1,16 +1,20 @@
 {
   "componentClassName": "Foo",
-  "componentFileName": "type-decorator-helpers-legacy",
+  "componentFileName": "type-decorator-helpers",
   "arguments": {
-    "optionalType": {
+    "optionalArgument": {
       "type": "optional",
-      "args": "Date"
+      "args": [
+        "Date"
+      ]
     },
-    "arrayType": {
+    "arrayArgument": {
       "type": "arrayOf",
-      "args": "\"string\""
+      "args": [
+        "\"string\""
+      ]
     },
-    "oneType": {
+    "oneArgument": {
       "type": "oneOf",
       "args": [
         "\"red\"",
@@ -18,34 +22,43 @@
         "\"yellow\""
       ]
     },
-    "shapeType": {
+    "shapeArgument": {
       "type": "shapeOf",
-      "args": {
-        "id": {
-          "type": "\"string\""
+      "args": [
+        {
+          "id": {
+            "type": "\"string\""
+          }
         }
-      }
+      ]
     },
-    "unionType": {
-      "type": {
-        "unionOf": [
-          { "type": "\"number\"" },
-          { "type": "\"string\"" }
-        ]
-      }
-    },
-    "nestedType": {
+    "unionArgument": {
       "type": "unionOf",
       "args": [
-        { "type": "\"string\"" },
+        {
+          "type": "\"number\""
+        },
+        {
+          "type": "\"string\""
+        }
+      ]
+    },
+    "nestedArgument": {
+      "type": "unionOf",
+      "args": [
+        {
+          "type": "\"string\""
+        },
         {
           "type": "shapeOf",
-          "args": {
-            "id": {
-              "type": "optional",
-              "args": "\"string\""
+          "args": [
+            {
+              "id": {
+                "type": "optional",
+                "args": ["\"string\""]
+              }
             }
-          }
+          ]
         }
       ]
     }
