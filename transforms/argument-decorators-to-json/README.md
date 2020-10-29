@@ -61,57 +61,57 @@ class Foo extends Component {
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-helpers-legacy",
   "arguments": {
     "optionalType": {
-      "type": {
-        "optional": "Date"
-      },
-      "defaultValue": "undefined"
+      "type": "optional",
+      "args": "Date"
     },
     "arrayType": {
-      "type": {
-        "arrayOf": "string"
-      },
-      "defaultValue": "undefined"
+      "type": "arrayOf",
+      "args": "\"string\""
     },
     "oneType": {
-      "type": {
-        "oneOf": ["red", "blue", "yellow"]
-      },
-      "defaultValue": "undefined"
+      "type": "oneOf",
+      "args": [
+        "\"red\"",
+        "\"blue\"",
+        "\"yellow\""
+      ]
     },
     "shapeType": {
-      "type": {
-        "shapeOf": {
-          "id": "string"
+      "type": "shapeOf",
+      "args": {
+        "id": {
+          "type": "\"string\""
         }
-      },
-      "defaultValue": "undefined"
+      }
     },
     "unionType": {
       "type": {
-        "unionOf": ["number", "string"]
-      },
-      "defaultValue": "undefined"
+        "unionOf": [
+          { "type": "\"number\"" },
+          { "type": "\"string\"" }
+        ]
+      }
     },
     "nestedType": {
-      "type": {
-        "unionOf": [
-          "string",
-          {
-            "shapeOf": {
-              "id": {
-                "optional": "string"
-              }
+      "type": "unionOf",
+      "args": [
+        { "type": "\"string\"" },
+        {
+          "type": "shapeOf",
+          "args": {
+            "id": {
+              "type": "optional",
+              "args": "\"string\""
             }
           }
-        ]
-      },
-      "defaultValue": "undefined"
+        }
+      ]
     }
   }
 }
-
 ```
 ---
 <a id="type-decorator-helpers">**type-decorator-helpers**</a>
@@ -144,63 +144,72 @@ class Foo extends Component {
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-helpers",
   "arguments": {
     "optionalArgument": {
-      "type": {
-        "optional": "Date"
-      },
-      "defaultValue": "undefined"
+      "type": "optional",
+      "args": "Date"
     },
     "arrayArgument": {
-      "type": {
-        "arrayOf": "string"
-      },
-      "defaultValue": "undefined"
+      "type": "arrayOf",
+      "args": "\"string\""
     },
     "oneArgument": {
-      "type": {
-        "oneOf": ["red", "blue", "yellow"]
-      },
-      "defaultValue": "undefined"
+      "type": "oneOf",
+      "args": [
+        "\"red\"",
+        "\"blue\"",
+        "\"yellow\""
+      ]
     },
     "shapeArgument": {
-      "type": {
-        "shapeOf": {
-          "id": "string"
+      "type": "shapeOf",
+      "args": {
+        "id": {
+          "type": "\"string\""
         }
-      },
-      "defaultValue": "undefined"
+      }
     },
     "unionArgument": {
       "type": {
-        "unionOf": ["number", "string"]
-      },
-      "defaultValue": "undefined"
+        "unionOf": [
+          { "type": "\"number\"" },
+          { "type": "\"string\"" }
+        ]
+      }
     },
     "nestedArgument": {
-      "type": {
-        "unionOf": [
-          "string",
-          {
-            "shapeOf": {
-              "id": {
-                "optional": "string"
-              }
+      "type": "unionOf",
+      "args": [
+        { "type": "\"string\"" },
+        {
+          "type": "shapeOf",
+          "args": {
+            "id": {
+              "type": "optional",
+              "args": "\"string\""
             }
           }
-        ]
-      },
-      "defaultValue": "undefined"
+        }
+      ]
     }
   }
 }
-
 ```
 ---
 <a id="type-decorator-primitives-legacy">**type-decorator-primitives-legacy**</a>
 
 **Input** (<small>[type-decorator-primitives-legacy.input.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives-legacy.input.js)</small>):
 ```js
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
+
+class MyClass {}
+
 class Foo extends Component {
   @argument
   @type('any')
@@ -233,6 +242,26 @@ class Foo extends Component {
   @argument
   @type('undefined')
   undefinedType;
+
+  @argument
+  @type(Action)
+  actionArgument;
+
+  @argument
+  @type(ClassicAction)
+  classicActionArgument;
+
+  @argument
+  @type(Element)
+  elementArgument;
+
+  @argument
+  @type(Node)
+  nodeArgument;
+
+  @argument
+  @type(MyClass)
+  classArgument;
 }
 ```
 
@@ -240,38 +269,46 @@ class Foo extends Component {
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives-legacy",
   "arguments": {
     "anyType": {
-      "type": "any",
-      "defaultValue": "undefined"
+      "type": "\"any\""
     },
     "booleanType": {
-      "type": "boolean",
-      "defaultValue": "undefined"
+      "type": "\"boolean\""
     },
     "nullType": {
-      "type": "null",
-      "defaultValue": "undefined"
+      "type": "\"null\""
     },
     "numberType": {
-      "type": "number",
-      "defaultValue": "undefined"
+      "type": "\"number\""
     },
     "objectType": {
-      "type": "object",
-      "defaultValue": "undefined"
+      "type": "\"object\""
     },
     "stringType": {
-      "type": "string",
-      "defaultValue": "undefined"
+      "type": "\"string\""
     },
     "symbolType": {
-      "type": "symbol",
-      "defaultValue": "undefined"
+      "type": "\"symbol\""
     },
     "undefinedType": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+      "type": "\"undefined\""
+    },
+    "actionType": {
+      "type": "Action"
+    },
+    "classicActionType": {
+      "type": "ClassicAction"
+    },
+    "elementType": {
+      "type": "Element"
+    },
+    "nodeType": {
+      "type": "Node"
+    },
+    "classType": {
+      "type": "MyClass"
     }
   }
 }
@@ -282,6 +319,18 @@ class Foo extends Component {
 
 **Input** (<small>[type-decorator-primitives-with-defaults-legacy.input.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives-with-defaults-legacy.input.js)</small>):
 ```js
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
+
+class MyClass {
+  constructor() {}
+}
+const myClassInstance = new MyClass();
+
 class Foo extends Component {
   @argument
   @type('any')
@@ -314,6 +363,26 @@ class Foo extends Component {
   @argument
   @type('undefined')
   undefinedType = undefined;
+
+  @argument
+  @type(Action)
+  actionType = () => {};
+
+  @argument
+  @type(ClassicAction)
+  classicActionType = 'myActionName';
+
+  @argument
+  @type(Element)
+  elementType = window.Element;
+
+  @argument
+  @type(Node)
+  nodeType = window.Node;
+
+  @argument
+  @type(MyClass)
+  classType = myClassInstance;
 }
 
 ```
@@ -322,39 +391,47 @@ class Foo extends Component {
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives-with-defaults-legacy",
   "arguments": {
     "anyType": {
-      "type": "any",
-      "defaultValue": "NaN"
+      "type": "\"any\""
     },
     "booleanType": {
-      "type": "boolean",
-      "defaultValue": true
+      "type": "\"boolean\""
     },
     "nullType": {
-      "type": "null",
-      "defaultValue": null
+      "type": "\"null\""
     },
     "numberType": {
-      "type": "number",
-      "defaultValue": 1
+      "type": "\"number\""
     },
     "objectType": {
-      "type": "object",
-      "defaultValue": {}
+      "type": "\"object\""
     },
     "stringType": {
-      "type": "string",
-      "defaultValue": ""
+      "type": "\"string\""
     },
     "symbolType": {
-      "type": "symbol",
-      "defaultValue": "Symbol()"
+      "type": "\"symbol\""
     },
     "undefinedType": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+      "type": "\"undefined\""
     },
+    "actionType": {
+      "type": "Action"
+    },
+    "classicActionType": {
+      "type": "ClassicAction"
+    },
+    "elementType": {
+      "type": "Element"
+    },
+    "nodeType": {
+      "type": "Node"
+    },
+    "classType": {
+      "type": "MyClass"
+    }
   }
 }
 
@@ -364,6 +441,18 @@ class Foo extends Component {
 
 **Input** (<small>[type-decorator-primitives-with-defaults.input.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives-with-defaults.input.js)</small>):
 ```js
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
+
+class MyClass {
+  constructor() {}
+}
+const myClassInstance = new MyClass();
+
 class Foo extends Component {
   @argument('any')
   anyArgument = NaN;
@@ -388,6 +477,21 @@ class Foo extends Component {
 
   @argument('undefined')
   undefinedArgument = undefined;
+
+  @argument(Action)
+  actionArgument = () => {};
+
+  @argument(ClassicAction)
+  classicActionArgument = 'myActionName';
+
+  @argument(Element)
+  elementArgument = window.Element;
+
+  @argument(Node)
+  nodeArgument = window.Node;
+
+  @argument(MyClass)
+  classArgument = myClassInstance;
 }
 
 ```
@@ -396,38 +500,46 @@ class Foo extends Component {
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives-with-defaults",
   "arguments": {
     "anyArgument": {
-      "type": "any",
-      "defaultValue": "NaN"
+      "type": "\"any\""
     },
     "booleanArgument": {
-      "type": "boolean",
-      "defaultValue": true
+      "type": "\"boolean\""
     },
     "nullArgument": {
-      "type": "null",
-      "defaultValue": null
+      "type": "\"null\""
     },
     "numberArgument": {
-      "type": "number",
-      "defaultValue": 1
+      "type": "\"number\""
     },
     "objectArgument": {
-      "type": "object",
-      "defaultValue": {}
+      "type": "\"object\""
     },
     "stringArgument": {
-      "type": "string",
-      "defaultValue": ""
+      "type": "\"string\""
     },
     "symbolArgument": {
-      "type": "symbol",
-      "defaultValue": "Symbol()"
+      "type": "\"symbol\""
     },
     "undefinedArgument": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+      "type": "\"undefined\""
+    },
+    "actionArgument": {
+      "type": "Action"
+    },
+    "classicActionArgument": {
+      "type": "ClassicAction"
+    },
+    "elementArgument": {
+      "type": "Element"
+    },
+    "nodeArgument": {
+      "type": "Node"
+    },
+    "classArgument": {
+      "type": "MyClass"
     }
   }
 }
@@ -438,6 +550,15 @@ class Foo extends Component {
 
 **Input** (<small>[type-decorator-primitives.input.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorator-primitives.input.js)</small>):
 ```js
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
+
+class MyClass {}
+
 class Foo extends Component {
   @argument('any')
   anyArgument;
@@ -462,6 +583,21 @@ class Foo extends Component {
 
   @argument('undefined')
   undefinedArgument;
+
+  @argument(Action)
+  actionArgument;
+
+  @argument(ClassicAction)
+  classicActionArgument;
+
+  @argument(Element)
+  elementArgument;
+
+  @argument(Node)
+  nodeArgument;
+
+  @argument(MyClass)
+  classArgument;
 }
 
 ```
@@ -470,41 +606,48 @@ class Foo extends Component {
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives",
   "arguments": {
     "anyArgument": {
-      "type": "any",
-      "defaultValue": "undefined"
+      "type": "\"any\""
     },
     "booleanArgument": {
-      "type": "boolean",
-      "defaultValue": "undefined"
+      "type": "\"boolean\""
     },
     "nullArgument": {
-      "type": "null",
-      "defaultValue": "undefined"
+      "type": "\"null\""
     },
     "numberArgument": {
-      "type": "number",
-      "defaultValue": "undefined"
+      "type": "\"number\""
     },
     "objectArgument": {
-      "type": "object",
-      "defaultValue": "undefined"
+      "type": "\"object\""
     },
     "stringArgument": {
-      "type": "string",
-      "defaultValue": "undefined"
+      "type": "\"string\""
     },
     "symbolArgument": {
-      "type": "symbol",
-      "defaultValue": "undefined"
+      "type": "\"symbol\""
     },
     "undefinedArgument": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+      "type": "\"undefined\""
+    },
+    "actionArgument": {
+      "type": "Action"
+    },
+    "classicActionArgument": {
+      "type": "ClassicAction"
+    },
+    "elementArgument": {
+      "type": "Element"
+    },
+    "nodeArgument": {
+      "type": "Node"
+    },
+    "classArgument": {
+      "type": "MyClass"
     }
   }
 }
-
 ```
 <!--FIXTURES_CONTENT_END-->

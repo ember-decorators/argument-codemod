@@ -27,38 +27,46 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives-with-defaults",
   "arguments": {
-    "anyType": {
-      "type": "any",
-      "defaultValue": "NaN"
+    "anyArgument": {
+      "type": "\"any\""
     },
-    "booleanType": {
-      "type": "boolean",
-      "defaultValue": true
+    "booleanArgument": {
+      "type": "\"boolean\""
     },
-    "nullType": {
-      "type": "null",
-      "defaultValue": null
+    "nullArgument": {
+      "type": "\"null\""
     },
-    "numberType": {
-      "type": "number",
-      "defaultValue": 1
+    "numberArgument": {
+      "type": "\"number\""
     },
-    "objectType": {
-      "type": "object",
-      "defaultValue": {}
+    "objectArgument": {
+      "type": "\"object\""
     },
-    "stringType": {
-      "type": "string",
-      "defaultValue": ""
+    "stringArgument": {
+      "type": "\"string\""
     },
-    "symbolType": {
-      "type": "symbol",
-      "defaultValue": "Symbol()"
+    "symbolArgument": {
+      "type": "\"symbol\""
     },
-    "undefinedType": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+    "undefinedArgument": {
+      "type": "\"undefined\""
+    },
+    "actionArgument": {
+      "type": "Action"
+    },
+    "classicActionArgument": {
+      "type": "ClassicAction"
+    },
+    "elementArgument": {
+      "type": "Element"
+    },
+    "nodeArgument": {
+      "type": "Node"
+    },
+    "classArgument": {
+      "type": "MyClass"
     }
   }
 }
@@ -75,7 +83,11 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 {{arg-type @stringType "string" path="stringType"}}
 {{arg-type @symbolType "symbol" path="symbolType"}}
 {{arg-type @undefinedType "undefined" path="undefinedType"}}
-
+{{arg-type @actionType 'function' path="actionType"}}
+{{arg-type @classicActionType (unionOf 'string', 'function') path="classicActionType"}}
+{{arg-type @elementType (instanceOf "Element") path="elementType"}}
+{{arg-type @nodeType (instanceOf "Node") path="nodeType"}}
+{{arg-type @classType (instanceOf this.__MyClass__) path="classType"}}
 ```
 ---
 <a id="type-decorator-primitives">**type-decorator-primitives**</a>
@@ -84,54 +96,65 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 ```json
 {
   "componentClassName": "Foo",
+  "componentFileName": "type-decorator-primitives",
   "arguments": {
-    "anyType": {
-      "type": "any",
-      "defaultValue": "NaN"
+    "anyArgument": {
+      "type": "\"any\""
     },
-    "booleanType": {
-      "type": "boolean",
-      "defaultValue": true
+    "booleanArgument": {
+      "type": "\"boolean\""
     },
-    "nullType": {
-      "type": "null",
-      "defaultValue": null
+    "nullArgument": {
+      "type": "\"null\""
     },
-    "numberType": {
-      "type": "number",
-      "defaultValue": 1
+    "numberArgument": {
+      "type": "\"number\""
     },
-    "objectType": {
-      "type": "object",
-      "defaultValue": {}
+    "objectArgument": {
+      "type": "\"object\""
     },
-    "stringType": {
-      "type": "string",
-      "defaultValue": ""
+    "stringArgument": {
+      "type": "\"string\""
     },
-    "symbolType": {
-      "type": "symbol",
-      "defaultValue": "Symbol()"
+    "symbolArgument": {
+      "type": "\"symbol\""
     },
-    "undefinedType": {
-      "type": "undefined",
-      "defaultValue": "undefined"
+    "undefinedArgument": {
+      "type": "\"undefined\""
+    },
+    "actionArgument": {
+      "type": "Action"
+    },
+    "classicActionArgument": {
+      "type": "ClassicAction"
+    },
+    "elementArgument": {
+      "type": "Element"
+    },
+    "nodeArgument": {
+      "type": "Node"
+    },
+    "classArgument": {
+      "type": "MyClass"
     }
   }
 }
-
 ```
 
 **Output** (<small>[type-decorator-primitives.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/type-decorator-primitives.output.hbs)</small>):
 ```hbs
-{{arg-type @anyType "any" path="anyType"}}
-{{arg-type @booleanType "boolean" path="booleanType"}}
-{{arg-type @nullType "null" path="nullType"}}
-{{arg-type @numberType "number" path="numberType"}}
-{{arg-type @objectType "object" path="objectType"}}
-{{arg-type @stringType "string" path="stringType"}}
-{{arg-type @symbolType "symbol" path="symbolType"}}
-{{arg-type @undefinedType "undefined" path="undefinedType"}}
-
+{{arg-type @anyArgument "any" path="anyArgument"}}
+{{arg-type @booleanArgument "boolean" path="booleanArgument"}}
+{{arg-type @nullArgument "null" path="nullArgument"}}
+{{arg-type @numberArgument "number" path="numberArgument"}}
+{{arg-type @objectArgument "object" path="objectArgument"}}
+{{arg-type @stringArgument "string" path="stringArgument"}}
+{{arg-type @symbolArgument "symbol" path="symbolArgument"}}
+{{arg-type @undefinedArgument "undefined" path="undefinedArgument"}}
+{{arg-type @actionArgument 'function' path="actionArgument"}}
+{{arg-type @classicActionArgument (unionOf 'string', 'function') path="classicActionArgument"}}
+{{arg-type @elementArgument (instanceOf "Element") path="elementArgument"}}
+{{arg-type @nodeArgument (instanceOf "Node") path="nodeArgument"}}
+{{arg-type @classArgument (instanceOf this.__MyClass__) path="classArgument"}}
 ```
 <!--FIXTURES_CONTENT_END-->
