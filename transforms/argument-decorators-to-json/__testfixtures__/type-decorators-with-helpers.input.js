@@ -12,12 +12,12 @@ class Foo extends Component {
   oneArgument;
 
   @argument
-  @type(shapeOf({ id: 'string' }))
-  shapeArgument;
-
-  @argument
   @type(unionOf('number', 'string'))
   unionArgument;
+
+  @argument
+  @type(shapeOf({ id: 'string' }))
+  shapeArgument;
 
   @argument
   @type(unionOf('string', shapeOf({ id: optional('string') })))

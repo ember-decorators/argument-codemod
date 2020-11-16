@@ -10,13 +10,16 @@ class MyClass {}
 class Foo extends Component {
   @argument
   @type('any')
+  @decoratorFoo('foo')
   anyArgument;
 
+  @decoratorFoo('foo')
   @argument
   @type('boolean')
   booleanArgument;
 
   @argument
+  @decoratorFoo('foo')
   @type('null')
   nullArgument;
 

@@ -2,6 +2,6 @@
 
 const { runTransformTest } = require('codemod-cli');
 
-runTransformTest({ 
+runTransformTest({
   name: 'argument-decorators-cleanup',
 });
