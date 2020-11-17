@@ -1,66 +1,118 @@
-{
-  "componentClassName": "Foo",
-  "componentFileName": "type-decorator-helpers",
+module.exports = {
+  "componentFileName": "argument-decorators-with-helpers.js",
+
   "arguments": {
     "optionalArgument": {
-      "type": "optional",
-      "args": [
-        "Date"
-      ]
-    },
-    "arrayArgument": {
-      "type": "arrayOf",
-      "args": [
-        "\"string\""
-      ]
-    },
-    "oneArgument": {
-      "type": "oneOf",
-      "args": [
-        "\"red\"",
-        "\"blue\"",
-        "\"yellow\""
-      ]
-    },
-    "shapeArgument": {
-      "type": "shapeOf",
+      "type": "CallExpression",
+      "value": "optional",
       "args": [
         {
-          "id": {
-            "type": "\"string\""
+          "type": "Identifier",
+          "value": "Date"
+        },
+      ]
+    },
+
+    "arrayArgument": {
+      "type": "CallExpression",
+      "value": "arrayOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
+        },
+      ]
+    },
+
+    "oneArgument": {
+      "type": "CallExpression",
+      "value": "oneOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "red"
+        },
+        {
+          "type": "StringLiteral",
+          "value": "blue"
+        },
+        {
+          "type": "StringLiteral",
+          "value": "yellow"
+        }
+      ]
+    },
+
+    "unionArgument": {
+      "type": "CallExpression",
+      "value": "unionOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "number"
+        },
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
+        },
+      ]
+    },
+
+    "shapeArgument": {
+      "type": "CallExpression",
+      "value": "shapeOf",
+      "args": [
+        {
+          "type": "ObjectExpression",
+          "value": {
+            "id": {
+              "type": "StringLiteral",
+              "value": "StringLiteral"
+            },
           }
         }
       ]
     },
-    "unionArgument": {
-      "type": "unionOf",
-      "args": [
-        {
-          "type": "\"number\""
-        },
-        {
-          "type": "\"string\""
-        }
-      ]
-    },
+
     "nestedArgument": {
-      "type": "unionOf",
+      "type": "CallExpression",
+      "value": "unionOf",
       "args": [
         {
-          "type": "\"string\""
+          "type": "StringLiteral",
+          "value": "StringLiteral"
         },
         {
-          "type": "shapeOf",
+          "type": "CallExpression",
+          "value": "shapeOf",
           "args": [
             {
               "id": {
-                "type": "optional",
-                "args": ["\"string\""]
+                "type": "CallExpression",
+                "value": "optional",
+                "args": [
+                  {
+                    "type": "StringLiteral",
+                    "value": "StringLiteral"
+                  }
+                ]
               }
             }
           ]
         }
       ]
     }
-  }
-}
+
+    "nestedArgument": {
+      validators: [
+        ["union-of", [
+          'string',
+          'number',
+          ['instance-of', 'this.__Date'] // <-- stringify the exposed property
+          ['shape-of', {
+            id: ["optional", "StringLiteral"]
+          }]
+        ]]
+      ],
+    }
+};

@@ -1,45 +1,70 @@
-{
-  "componentClassName": "Foo",
-  "componentFileName": "type-decorator-primitives",
+module.exports = {
+  "componentFileName": "argument-decorators-with-primitives.js",
+
   "arguments": {
     "anyArgument": {
-      "type": "\"any\""
+      "type": "StringLiteral",
+      "value": "\"any\""
     },
+
     "booleanArgument": {
-      "type": "\"boolean\""
+      "type": "StringLiteral",
+      "value": "\"boolean\""
     },
+
     "nullArgument": {
-      "type": "\"null\""
+      "type": "StringLiteral",
+      "value": "\"null\""
     },
+
     "numberArgument": {
-      "type": "\"number\""
+      "type": "StringLiteral",
+      "value": "\"number\""
     },
+
     "objectArgument": {
-      "type": "\"object\""
+      "type": "StringLiteral",
+      "value": "\"object\""
     },
+
     "stringArgument": {
-      "type": "\"string\""
+      "type": "StringLiteral",
+      "value": "\"string\""
     },
+
     "symbolArgument": {
-      "type": "\"symbol\""
+      "type": "StringLiteral",
+      "value": "\"symbol\""
     },
+
     "undefinedArgument": {
-      "type": "\"undefined\""
+      "type": "StringLiteral",
+      "value": "\"undefined\""
     },
+
     "actionArgument": {
-      "type": "Action"
+      "type": "Identifier",
+      "value": "Action"
     },
+
     "classicActionArgument": {
-      "type": "ClassicAction"
+      "type": "Identifier",
+      "value": "ClassicAction"
     },
+
     "elementArgument": {
-      "type": "Element"
+      "type": "Identifier",
+      "value": "Element"
     },
+
     "nodeArgument": {
-      "type": "Node"
+      "type": "Identifier",
+      "value": "Node"
     },
+
     "classArgument": {
-      "type": "MyClass"
+      "type": "Identifier",
+      "value": "MyClass"
     }
   }
-}
+};

@@ -1,65 +1,118 @@
 module.exports = {
-    "componentFileName": "argument-decorators-with-helpers.js",
-    "arguments": {
-        "optionalArgument": {
-            "type": "optional",
-            "args": [
-                "Date"
-            ]
+  "componentFileName": "argument-decorators-with-helpers.js",
+
+  "arguments": {
+    "optionalArgument": {
+      "type": "CallExpression",
+      "value": "optional",
+      "args": [
+        {
+          "type": "Identifier",
+          "value": "Date"
         },
-        "arrayArgument": {
-            "type": "arrayOf",
-            "args": [
-                "\"string\""
-            ]
+      ]
+    },
+
+    "arrayArgument": {
+      "type": "CallExpression",
+      "value": "arrayOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
         },
-        "oneArgument": {
-            "type": "oneOf",
-            "args": [
-                "\"red\"",
-                "\"blue\"",
-                "\"yellow\""
-            ]
+      ]
+    },
+
+    "oneArgument": {
+      "type": "CallExpression",
+      "value": "oneOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "red"
         },
-        "shapeArgument": {
-            "type": "shapeOf",
-            "args": [
-                {
-                    "id": {
-                        "type": "\"string\""
-                    }
-                }
-            ]
+        {
+          "type": "StringLiteral",
+          "value": "blue"
         },
-        "unionArgument": {
-            "type": "unionOf",
-            "args": [
-                {
-                    "type": "\"number\""
-                },
-                {
-                    "type": "\"string\""
-                }
-            ]
-        },
-        "nestedArgument": {
-            "type": "unionOf",
-            "args": [
-                {
-                    "type": "\"string\""
-                },
-                {
-                    "type": "shapeOf",
-                    "args": [
-                        {
-                            "id": {
-                                "type": "optional",
-                                "args": ["\"string\""]
-                            }
-                        }
-                    ]
-                }
-            ]
+        {
+          "type": "StringLiteral",
+          "value": "yellow"
         }
+      ]
+    },
+
+    "unionArgument": {
+      "type": "CallExpression",
+      "value": "unionOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "number"
+        },
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
+        },
+      ]
+    },
+
+    "shapeArgument": {
+      "type": "CallExpression",
+      "value": "shapeOf",
+      "args": [
+        {
+          "type": "ObjectExpression",
+          "value": {
+            "id": {
+              "type": "StringLiteral",
+              "value": "StringLiteral"
+            },
+          }
+        }
+      ]
+    },
+
+    "nestedArgument": {
+      "type": "CallExpression",
+      "value": "unionOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
+        },
+        {
+          "type": "CallExpression",
+          "value": "shapeOf",
+          "args": [
+            {
+              "id": {
+                "type": "CallExpression",
+                "value": "optional",
+                "args": [
+                  {
+                    "type": "StringLiteral",
+                    "value": "StringLiteral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+
+    "nestedArgument": {
+      validators: [
+        ["union-of", [
+          'string',
+          'number',
+          ['instance-of', 'this.__Date'] // <-- stringify the exposed property
+          ['shape-of', {
+            id: ["optional", "StringLiteral"]
+          }]
+        ]]
+      ],
     }
 };

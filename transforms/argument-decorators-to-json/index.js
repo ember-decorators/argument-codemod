@@ -18,30 +18,40 @@ module.exports = function transformer(file, api) {
     )
   );
 
-  function parseDecoratorArgs(args) {
+  function parseDecoratorArgs(args = []) {
     if (!args.length) {
       return [];
     }
 
     return args.map((arg) => {
       if (arg.type === 'StringLiteral') {
-        return j.literal(`"${arg.value}"`);
+        return j.objectExpression([
+          j.property('init', j.literal('type'), j.literal(arg.type)),
+          j.property('init', j.literal('value'), j.literal(arg.value)),
+        ]);
       } else if (arg.type === 'Identifier') {
-        return j.literal(arg.name);
+        return j.objectExpression([
+          j.property('init', j.literal('type'), j.literal(arg.type)),
+          j.property('init', j.literal('value'), j.literal(arg.name)),
+        ]);
       } else if (arg.type === 'ObjectExpression') {
         const props = arg.properties.map((prop) => {
           const key = prop.key.type === 'StringLiteral' ? prop.key.value : prop.key.name;
           return j.property('init', j.literal(key), parseDecoratorArgs([prop.value])[0]);
         });
 
-        return j.objectExpression(props);
+        return j.objectExpression([
+          j.property('init', j.literal('type'), j.literal(arg.type)),
+          j.property('init', j.literal('value'), j.objectExpression(props)),
+        ]);
       } else if (arg.type === 'CallExpression') {
         // for each argument passed to the fun, parse out its value by calling this func
         return j.objectExpression([
-          j.property('init', j.literal('__name'), j.literal(arg.callee.name)),
+          j.property('init', j.literal('type'), j.literal(arg.type)),
+          j.property('init', j.literal('value'), j.literal(arg.callee.name)),
           j.property(
             'init',
-            j.literal('__args'),
+            j.literal('args'),
             j.arrayExpression(parseDecoratorArgs(arg.arguments))
           ),
         ]);
@@ -54,7 +64,10 @@ module.exports = function transformer(file, api) {
   // Find all the class properties that have decorators
   input
     .find(j.ClassProperty)
-    .filter((classProperty) => Boolean(classProperty.value.decorators.length))
+    .filter(
+      (classProperty) =>
+        classProperty.value.decorators && Boolean(classProperty.value.decorators.length)
+    )
     .forEach((classProperty) => {
       let propValue = [];
 
@@ -72,7 +85,7 @@ module.exports = function transformer(file, api) {
 
           // Get type and args for this class property
           if (decoratorArg.type === 'StringLiteral') {
-            type = `"${decoratorArg.value}"`;
+            type = decoratorArg.value;
           } else if (decoratorArg.type === 'Identifier') {
             type = decoratorArg.name;
           } else if (decoratorArg.type === 'CallExpression') {
@@ -80,9 +93,10 @@ module.exports = function transformer(file, api) {
             args = parseDecoratorArgs(decoratorArg.arguments);
           }
 
-          propValue.push(j.property('init', j.literal('__name'), j.literal(type)));
+          propValue.push(j.property('init', j.literal('type'), j.literal(decoratorArg.type)));
+          propValue.push(j.property('init', j.literal('value'), j.literal(type)));
           if (args.length) {
-            propValue.push(j.property('init', j.literal('__args'), j.arrayExpression(args)));
+            propValue.push(j.property('init', j.literal('args'), j.arrayExpression(args)));
           }
         }
       });
@@ -92,7 +106,7 @@ module.exports = function transformer(file, api) {
       );
     });
 
-  return j(output).toSource();
+  return j(output).toSource({ tabWidth: 2 });
 };
 
 module.exports.type = 'js';

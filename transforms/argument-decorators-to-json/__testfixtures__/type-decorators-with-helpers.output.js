@@ -1,56 +1,119 @@
 module.exports = {
-    "componentFileName": "type-decorators-with-helpers.js",
+  "componentFileName": "type-decorators-with-helpers.js",
 
-    "arguments": {
-        "optionalArgument": {
-            "__name": "optional",
-            "__args": ["Date"]
+  "arguments": {
+    "optionalArgument": {
+      "type": "CallExpression",
+      "value": "optional",
+      "args": [
+        {
+          "type": "Identifier",
+          "value": "Date"
         },
+      ]
+    },
 
-        "arrayArgument": {
-            "__name": "arrayOf",
-            "__args": ["\"string\""]
+    "arrayArgument": {
+      "type": "CallExpression",
+      "value": "arrayOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
         },
+      ]
+    },
 
-        "oneArgument": {
-            "__name": "oneOf",
-            "__args": [
-                "\"red\"",
-                "\"blue\"",
-                "\"yellow\""
-            ]
+    "oneArgument": {
+      "type": "CallExpression",
+      "value": "oneOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "red"
         },
-
-        "unionArgument": {
-            "__name": "unionOf",
-            "__args": ["\"number\"", "\"string\""]
+        {
+          "type": "StringLiteral",
+          "value": "blue"
         },
-
-        "shapeArgument": {
-            "__name": "shapeOf",
-            "__args": [
-                {
-                    "id": "\"string\""
-                }
-            ]
-        },
-
-        "nestedArgument": {
-            "__name": "unionOf",
-            "__args": [
-                "\"string\"",
-                {
-                    "__name": "shapeOf",
-                    "__args": [
-                        {
-                            "id": {
-                                "__name": "optional",
-                                "__args": ["\"string\""]
-                            }
-                        }
-                    ]
-                }
-            ]
+        {
+          "type": "StringLiteral",
+          "value": "yellow"
         }
+      ]
+    },
+
+    "unionArgument": {
+      "type": "CallExpression",
+      "value": "unionOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "number"
+        },
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
+        },
+      ]
+    },
+
+    "shapeArgument": {
+      "type": "CallExpression",
+      "value": "shapeOf",
+      "args": [
+        {
+          "type": "ObjectExpression",
+          "value": {
+            "id": {
+              "type": "StringLiteral",
+              "value": "StringLiteral"
+            },
+          }
+        }
+      ]
+    },
+
+    "nestedArgument": {
+      "type": "CallExpression",
+      "value": "unionOf",
+      "args": [
+        {
+          "type": "StringLiteral",
+          "value": "StringLiteral"
+        },
+        {
+          "type": "CallExpression",
+          "value": "shapeOf",
+          "args": [
+            {
+              "id": {
+                "type": "CallExpression",
+                "value": "optional",
+                "args": [
+                  {
+                    "type": "StringLiteral",
+                    "value": "StringLiteral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
     }
+
+    "nestedArgument": {
+      validators: [
+        ["union-of", [
+          'string',
+          'number',
+          ['instance-of', 'this.__Date'] // <-- stringify the exposed property
+          ['shape-of', {
+            id: ["optional", "StringLiteral"]
+          }]
+        ]]
+      ],
+    }
+  }
 };

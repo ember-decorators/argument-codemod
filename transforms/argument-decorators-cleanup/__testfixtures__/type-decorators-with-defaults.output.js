@@ -15,7 +15,7 @@ class Foo extends Component {
 
   /**
    * A multi-line comment
-   * @type {'any'} // why would you have this you have type checking, duh
+   * @type {'any'}
    */
   anyArgument = NaN;
 

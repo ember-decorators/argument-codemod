@@ -20,6 +20,13 @@ class Foo extends Component {
   shapeArgument;
 
   @argument
-  @type(unionOf('string', shapeOf({ id: optional('string') })))
+  @type(
+    unionOf(
+      'string',
+      shapeOf({
+        id: optional('string')
+      })
+    )
+  )
   nestedArgument;
 }

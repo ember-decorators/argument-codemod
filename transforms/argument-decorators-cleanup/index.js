@@ -5,7 +5,7 @@ module.exports = function transformer(file, api) {
   const j = getParser(api);
   const options = getOptions(); // eslint-disable-line
 
-  j(file.source)
+  return j(file.source)
     .find(j.ClassProperty)
     .filter((prop) => Boolean(prop.value.decorators.length))
     .forEach((path) => {

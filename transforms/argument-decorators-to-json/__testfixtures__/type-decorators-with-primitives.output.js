@@ -1,57 +1,70 @@
 module.exports = {
-    "componentFileName": "type-decorators-with-primitives.js",
+  "componentFileName": "type-decorators-with-primitives.js",
 
-    "arguments": {
-        "anyArgument": {
-            "type": "\"any\""
-        },
+  "arguments": {
+    "anyArgument": {
+      "type": "StringLiteral",
+      "value": "\"any\""
+    },
 
-        "booleanArgument": {
-            "type": "\"boolean\""
-        },
+    "booleanArgument": {
+      "type": "StringLiteral",
+      "value": "\"boolean\""
+    },
 
-        "nullArgument": {
-            "type": "\"null\""
-        },
+    "nullArgument": {
+      "type": "StringLiteral",
+      "value": "\"null\""
+    },
 
-        "numberArgument": {
-            "type": "\"number\""
-        },
+    "numberArgument": {
+      "type": "StringLiteral",
+      "value": "\"number\""
+    },
 
-        "objectArgument": {
-            "type": "\"object\""
-        },
+    "objectArgument": {
+      "type": "StringLiteral",
+      "value": "\"object\""
+    },
 
-        "stringArgument": {
-            "type": "\"string\""
-        },
+    "stringArgument": {
+      "type": "StringLiteral",
+      "value": "\"string\""
+    },
 
-        "symbolArgument": {
-            "type": "\"symbol\""
-        },
+    "symbolArgument": {
+      "type": "StringLiteral",
+      "value": "\"symbol\""
+    },
 
-        "undefinedArgument": {
-            "type": "\"undefined\""
-        },
+    "undefinedArgument": {
+      "type": "StringLiteral",
+      "value": "\"undefined\""
+    },
 
-        "actionArgument": {
-            "type": "Action"
-        },
+    "actionArgument": {
+      "type": "Identifier",
+      "value": "Action"
+    },
 
-        "classicActionArgument": {
-            "type": "ClassicAction"
-        },
+    "classicActionArgument": {
+      "type": "Identifier",
+      "value": "ClassicAction"
+    },
 
-        "elementArgument": {
-            "type": "Element"
-        },
+    "elementArgument": {
+      "type": "Identifier",
+      "value": "Element"
+    },
 
-        "nodeArgument": {
-            "type": "Node"
-        },
+    "nodeArgument": {
+      "type": "Identifier",
+      "value": "Node"
+    },
 
-        "classArgument": {
-            "type": "MyClass"
-        }
+    "classArgument": {
+      "type": "Identifier",
+      "value": "MyClass"
     }
+  }
 };

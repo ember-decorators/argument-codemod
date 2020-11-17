@@ -8,12 +8,19 @@ class Foo extends Component {
   @argument(oneOf('red', 'blue', 'yellow'))
   oneArgument;
 
-  @argument(shapeOf({ id: 'string' }))
-  shapeArgument;
-
   @argument(unionOf('number', 'string'))
   unionArgument;
 
-  @argument(unionOf('string', shapeOf({ id: optional('string') })))
+  @argument(shapeOf({ id: 'string' }))
+  shapeArgument;
+
+  @argument(
+    unionOf(
+      'string',
+      shapeOf({
+        id: optional('string')
+      })
+    )
+  )
   nestedArgument;
 }
