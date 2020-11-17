@@ -1,23 +1,64 @@
 const { getParser } = require('codemod-cli').jscodeshift;
 const { getOptions } = require('codemod-cli');
+const camelCase = require('camelcase');
 
 module.exports = function transformer(file, api) {
   const j = getParser(api);
   const options = getOptions(); // eslint-disable-line
   const input = j(file.source);
   const props = [];
-  const filename = file.path.substring(file.path.lastIndexOf('/') + 1);
-  const output = j.expressionStatement(
-    j.assignmentExpression(
-      '=',
-      j.memberExpression(j.identifier('module'), j.identifier('exports'), false),
+  const filename = camelCase(file.path.substring(file.path.lastIndexOf('/') + 1).slice(0, -3));
+  const output = j.variableDeclaration('const', [
+    j.variableDeclarator(
+      j.identifier(filename),
       j.objectExpression([
-        j.property('init', j.literal('componentFileName'), j.literal(filename)),
+        j.property('init', j.literal('filePath'), j.literal(file.path)),
         j.property('init', j.literal('arguments'), j.objectExpression(props)),
       ])
-    )
-  );
+    ),
+  ]);
 
+  function parseClassProperty(classProperty) {
+    let propValue = [];
+
+    // loop through all the decorators applied to this classProperty and parse
+    // out the type and args
+    classProperty.decorators.forEach((decorator) => {
+      if (
+        decorator.expression.type === 'CallExpression' &&
+        (decorator.expression.callee.name === 'type' ||
+          decorator.expression.callee.name === 'argument')
+      ) {
+        const decoratorArg = decorator.expression.arguments[0];
+        let type = '';
+        let args = [];
+
+        // Get type and args for this class property
+        if (decoratorArg.type === 'StringLiteral') {
+          type = decoratorArg.value;
+        } else if (decoratorArg.type === 'Identifier') {
+          type = decoratorArg.name;
+        } else if (decoratorArg.type === 'CallExpression') {
+          type = decoratorArg.callee.name;
+          args = parseDecoratorArgs(decoratorArg.arguments);
+        }
+
+        propValue.push(j.property('init', j.literal('type'), j.literal(decoratorArg.type)));
+        propValue.push(j.property('init', j.literal('value'), j.literal(type)));
+        if (args.length) {
+          propValue.push(j.property('init', j.literal('args'), j.arrayExpression(args)));
+        }
+      }
+    });
+
+    if (propValue.length) {
+      props.push(
+        j.property('init', j.literal(classProperty.key.name), j.objectExpression(propValue))
+      );
+    }
+  }
+
+  // Parse decorator args and return AST representations
   function parseDecoratorArgs(args = []) {
     if (!args.length) {
       return [];
@@ -61,50 +102,15 @@ module.exports = function transformer(file, api) {
     });
   }
 
-  // Find all the class properties that have decorators
-  input
-    .find(j.ClassProperty)
-    .filter(
-      (classProperty) =>
-        classProperty.value.decorators && Boolean(classProperty.value.decorators.length)
-    )
-    .forEach((classProperty) => {
-      let propValue = [];
-
-      // loop through all the decorators applied to this classProperty and parse
-      // out the type and args
-      classProperty.value.decorators.forEach((decorator) => {
-        if (
-          decorator.expression.type === 'CallExpression' &&
-          (decorator.expression.callee.name === 'type' ||
-            decorator.expression.callee.name === 'argument')
-        ) {
-          const decoratorArg = decorator.expression.arguments[0];
-          let type = '';
-          let args = [];
-
-          // Get type and args for this class property
-          if (decoratorArg.type === 'StringLiteral') {
-            type = decoratorArg.value;
-          } else if (decoratorArg.type === 'Identifier') {
-            type = decoratorArg.name;
-          } else if (decoratorArg.type === 'CallExpression') {
-            type = decoratorArg.callee.name;
-            args = parseDecoratorArgs(decoratorArg.arguments);
-          }
-
-          propValue.push(j.property('init', j.literal('type'), j.literal(decoratorArg.type)));
-          propValue.push(j.property('init', j.literal('value'), j.literal(type)));
-          if (args.length) {
-            propValue.push(j.property('init', j.literal('args'), j.arrayExpression(args)));
-          }
-        }
-      });
-
-      props.push(
-        j.property('init', j.literal(classProperty.value.key.name), j.objectExpression(propValue))
-      );
-    });
+  input.find(j.ClassBody).forEach((classBody) => {
+    if (classBody.value.body && classBody.value.body.length) {
+      classBody.value.body
+        .filter((classProperty) => {
+          return classProperty.decorators && Boolean(classProperty.decorators.length);
+        })
+        .forEach(parseClassProperty);
+    }
+  });
 
   return j(output).toSource({ tabWidth: 2 });
 };

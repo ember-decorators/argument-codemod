@@ -4,42 +4,47 @@ module.exports = {
   "arguments": {
     "anyArgument": {
       "type": "StringLiteral",
-      "value": "\"any\""
+      "value": "any"
     },
 
     "booleanArgument": {
       "type": "StringLiteral",
-      "value": "\"boolean\""
+      "value": "boolean"
     },
 
     "nullArgument": {
       "type": "StringLiteral",
-      "value": "\"null\""
+      "value": "null"
     },
 
     "numberArgument": {
       "type": "StringLiteral",
-      "value": "\"number\""
+      "value": "number"
     },
 
     "objectArgument": {
       "type": "StringLiteral",
-      "value": "\"object\""
+      "value": "object"
     },
 
     "stringArgument": {
       "type": "StringLiteral",
-      "value": "\"string\""
+      "value": "string"
     },
 
     "symbolArgument": {
       "type": "StringLiteral",
-      "value": "\"symbol\""
+      "value": "symbol"
     },
 
     "undefinedArgument": {
       "type": "StringLiteral",
-      "value": "\"undefined\""
+      "value": "undefined"
+    },
+
+    "functionArgument": {
+      "type": "Identifier",
+      "value": "Function"
     },
 
     "actionArgument": {

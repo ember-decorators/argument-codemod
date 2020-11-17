@@ -44,6 +44,10 @@ class Foo extends Component {
   undefinedArgument;
 
   @argument
+  @type(Function)
+  functionArgument() {}
+
+  @argument
   @type(Action)
   actionArgument;
 

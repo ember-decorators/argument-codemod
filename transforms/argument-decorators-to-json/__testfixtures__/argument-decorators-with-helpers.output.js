@@ -102,17 +102,5 @@ module.exports = {
         }
       ]
     }
-
-    "nestedArgument": {
-      validators: [
-        ["union-of", [
-          'string',
-          'number',
-          ['instance-of', 'this.__Date'] // <-- stringify the exposed property
-          ['shape-of', {
-            id: ["optional", "StringLiteral"]
-          }]
-        ]]
-      ],
-    }
+  }
 };

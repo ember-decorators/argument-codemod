@@ -29,6 +29,9 @@ class Foo extends Component {
   @argument('symbol')
   symbolArgument;
 
+  @argument(Function)
+  functionArgument() {}
+
   @argument('undefined')
   undefinedArgument;
 
