@@ -1,5 +1,5 @@
 module.exports = {
-  "componentFileName": "argument-decorators-with-helpers.js",
+  "componentFileName": "type-decorators-with-helpers.js",
 
   "arguments": {
     "optionalArgument": {
@@ -102,17 +102,5 @@ module.exports = {
         }
       ]
     }
-
-    "nestedArgument": {
-      validators: [
-        ["union-of", [
-          'string',
-          'number',
-          ['instance-of', 'this.__Date'] // <-- stringify the exposed property
-          ['shape-of', {
-            id: ["optional", "StringLiteral"]
-          }]
-        ]]
-      ],
-    }
+  }
 };

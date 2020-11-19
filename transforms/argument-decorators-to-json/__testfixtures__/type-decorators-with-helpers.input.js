@@ -24,7 +24,8 @@ class Foo extends Component {
     unionOf(
       'string',
       shapeOf({
-        id: optional('string')
+        id: optional('string'),
+        name: 'string'
       })
     )
   )

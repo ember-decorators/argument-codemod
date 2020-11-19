@@ -8,6 +8,8 @@ import {
 class MyClass {}
 
 class Foo extends Component {
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   @argument
   @type('any')
   anyArgument;

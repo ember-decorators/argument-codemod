@@ -1,25 +1,27 @@
+const fs = require('fs');
 const { getParser } = require('codemod-cli').jscodeshift;
 const { getOptions } = require('codemod-cli');
-const camelCase = require('camelcase');
+const output = {};
 
-module.exports = function transformer(file, api) {
+const transformer = function transformer(file, api) {
   const j = getParser(api);
   const options = getOptions(); // eslint-disable-line
   const input = j(file.source);
-  const props = [];
-  const filename = camelCase(file.path.substring(file.path.lastIndexOf('/') + 1).slice(0, -3));
-  const output = j.variableDeclaration('const', [
-    j.variableDeclarator(
-      j.identifier(filename),
-      j.objectExpression([
-        j.property('init', j.literal('filePath'), j.literal(file.path)),
-        j.property('init', j.literal('arguments'), j.objectExpression(props)),
-      ])
-    ),
-  ]);
+  const filename = file.path.substring(file.path.lastIndexOf('/') + 1).slice(0, -3);
+  const argumentProperties = {};
 
+  // Add entry to json output for this file
+  if (!Object.prototype.hasOwnProperty.call(output, filename)) {
+    output[filename] = {
+      path: file.path,
+      argumentProperties,
+    };
+  }
+
+  // Add an entry to the `argumentProperties` object for this class property whose value
+  // is a map of the args passed to its type/argument decorators
   function parseClassProperty(classProperty) {
-    let propValue = [];
+    let propValue = {};
 
     // loop through all the decorators applied to this classProperty and parse
     // out the type and args
@@ -30,35 +32,34 @@ module.exports = function transformer(file, api) {
           decorator.expression.callee.name === 'argument')
       ) {
         const decoratorArg = decorator.expression.arguments[0];
-        let type = '';
+        let value = '';
         let args = [];
 
         // Get type and args for this class property
         if (decoratorArg.type === 'StringLiteral') {
-          type = decoratorArg.value;
+          value = decoratorArg.value;
         } else if (decoratorArg.type === 'Identifier') {
-          type = decoratorArg.name;
+          value = decoratorArg.name;
         } else if (decoratorArg.type === 'CallExpression') {
-          type = decoratorArg.callee.name;
+          value = decoratorArg.callee.name;
           args = parseDecoratorArgs(decoratorArg.arguments);
         }
 
-        propValue.push(j.property('init', j.literal('type'), j.literal(decoratorArg.type)));
-        propValue.push(j.property('init', j.literal('value'), j.literal(type)));
+        propValue.type = decoratorArg.type;
+        propValue.value = value;
         if (args.length) {
-          propValue.push(j.property('init', j.literal('args'), j.arrayExpression(args)));
+          propValue.args = args;
         }
       }
     });
 
-    if (propValue.length) {
-      props.push(
-        j.property('init', j.literal(classProperty.key.name), j.objectExpression(propValue))
-      );
+    // generate key for argument and set value to result from above
+    if (!Object.prototype.hasOwnProperty.call(argumentProperties, classProperty.key.name)) {
+      argumentProperties[classProperty.key.name] = propValue;
     }
   }
 
-  // Parse decorator args and return AST representations
+  // Parse decorator args into a usable structure.
   function parseDecoratorArgs(args = []) {
     if (!args.length) {
       return [];
@@ -66,53 +67,69 @@ module.exports = function transformer(file, api) {
 
     return args.map((arg) => {
       if (arg.type === 'StringLiteral') {
-        return j.objectExpression([
-          j.property('init', j.literal('type'), j.literal(arg.type)),
-          j.property('init', j.literal('value'), j.literal(arg.value)),
-        ]);
+        return {
+          type: arg.type,
+          value: arg.value,
+        };
       } else if (arg.type === 'Identifier') {
-        return j.objectExpression([
-          j.property('init', j.literal('type'), j.literal(arg.type)),
-          j.property('init', j.literal('value'), j.literal(arg.name)),
-        ]);
+        return {
+          type: arg.type,
+          value: arg.name,
+        };
       } else if (arg.type === 'ObjectExpression') {
-        const props = arg.properties.map((prop) => {
+        const value = {};
+        arg.properties.forEach((prop) => {
           const key = prop.key.type === 'StringLiteral' ? prop.key.value : prop.key.name;
-          return j.property('init', j.literal(key), parseDecoratorArgs([prop.value])[0]);
+          value[key] = parseDecoratorArgs([prop.value])[0];
         });
 
-        return j.objectExpression([
-          j.property('init', j.literal('type'), j.literal(arg.type)),
-          j.property('init', j.literal('value'), j.objectExpression(props)),
-        ]);
+        return {
+          type: arg.type,
+          value,
+        };
       } else if (arg.type === 'CallExpression') {
         // for each argument passed to the fun, parse out its value by calling this func
-        return j.objectExpression([
-          j.property('init', j.literal('type'), j.literal(arg.type)),
-          j.property('init', j.literal('value'), j.literal(arg.callee.name)),
-          j.property(
-            'init',
-            j.literal('args'),
-            j.arrayExpression(parseDecoratorArgs(arg.arguments))
-          ),
-        ]);
+        return {
+          type: arg.type,
+          value: arg.callee.name,
+          args: parseDecoratorArgs(arg.arguments),
+        };
       }
 
-      return j.literal('unknown');
+      return {
+        type: 'unknown',
+      };
     });
   }
 
+  // Find all class properties and
   input.find(j.ClassBody).forEach((classBody) => {
     if (classBody.value.body && classBody.value.body.length) {
       classBody.value.body
         .filter((classProperty) => {
-          return classProperty.decorators && Boolean(classProperty.decorators.length);
+          const decorators = classProperty.decorators || [];
+          const hasArgumentDecorator = decorators.some((decorator) => {
+            return (
+              decorator.expression.type === 'CallExpression' &&
+              (decorator.expression.callee.name === 'type' ||
+                decorator.expression.callee.name === 'argument')
+            );
+          });
+
+          return Boolean(decorators.length) && hasArgumentDecorator;
         })
         .forEach(parseClassProperty);
     }
   });
 
-  return j(output).toSource({ tabWidth: 2 });
+  // Have to write each time this is transform is ran cause I can't access the state elsewhere
+  fs.writeFileSync('argument-decorators-to-json.json', JSON.stringify(output, null, 2), {
+    encoding: 'utf8',
+  });
+
+  // Return the unaltered input since we're really just trying to generate a json file as a side-effect
+  return input.toSource();
 };
 
+module.exports = transformer;
 module.exports.type = 'js';

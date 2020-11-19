@@ -1,75 +1,69 @@
-module.exports = {
-  "componentFileName": "type-decorators-with-primitives.js",
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
 
-  "arguments": {
-    "anyArgument": {
-      "type": "StringLiteral",
-      "value": "any"
-    },
+class MyClass {}
 
-    "booleanArgument": {
-      "type": "StringLiteral",
-      "value": "boolean"
-    },
+class Foo extends Component {
+  @argument
+  @type('any')
+  @decoratorFoo('foo')
+  anyArgument;
 
-    "nullArgument": {
-      "type": "StringLiteral",
-      "value": "null"
-    },
+  @decoratorFoo('foo')
+  @argument
+  @type('boolean')
+  booleanArgument;
 
-    "numberArgument": {
-      "type": "StringLiteral",
-      "value": "number"
-    },
+  @argument
+  @decoratorFoo('foo')
+  @type('null')
+  nullArgument;
 
-    "objectArgument": {
-      "type": "StringLiteral",
-      "value": "object"
-    },
+  @argument
+  @type('number')
+  numberArgument;
 
-    "stringArgument": {
-      "type": "StringLiteral",
-      "value": "string"
-    },
+  @argument
+  @type('object')
+  objectArgument;
 
-    "symbolArgument": {
-      "type": "StringLiteral",
-      "value": "symbol"
-    },
+  @argument
+  @type('string')
+  stringArgument;
 
-    "undefinedArgument": {
-      "type": "StringLiteral",
-      "value": "undefined"
-    },
+  @argument
+  @type('symbol')
+  symbolArgument;
 
-    "functionArgument": {
-      "type": "Identifier",
-      "value": "Function"
-    },
+  @argument
+  @type('undefined')
+  undefinedArgument;
 
-    "actionArgument": {
-      "type": "Identifier",
-      "value": "Action"
-    },
+  @argument
+  @type(Function)
+  functionArgument() {}
 
-    "classicActionArgument": {
-      "type": "Identifier",
-      "value": "ClassicAction"
-    },
+  @argument
+  @type(Action)
+  actionArgument;
 
-    "elementArgument": {
-      "type": "Identifier",
-      "value": "Element"
-    },
+  @argument
+  @type(ClassicAction)
+  classicActionArgument;
 
-    "nodeArgument": {
-      "type": "Identifier",
-      "value": "Node"
-    },
+  @argument
+  @type(Element)
+  elementArgument;
 
-    "classArgument": {
-      "type": "Identifier",
-      "value": "MyClass"
-    }
-  }
-};
+  @argument
+  @type(Node)
+  nodeArgument;
+
+  @argument
+  @type(MyClass)
+  classArgument;
+}

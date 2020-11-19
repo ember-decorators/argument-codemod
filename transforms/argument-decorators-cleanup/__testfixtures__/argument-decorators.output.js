@@ -1,4 +1,6 @@
 import {
+  Action,
+  ClassicAction,
   Element,
   Node
 } from '@ember-decorators/argument/types';
@@ -6,9 +8,48 @@ import {
 class MyClass {}
 
 class Foo extends Component {
-  // begin: ember-argument-types class references
-  __Element = Element;
-  __Node = Node;
-  __MyClass = MyClass;
-  // end: ember-argument-types class references
+  /**
+   * A multi-line comment
+   * @type {'any'}
+   */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
+  anyArgument;
+
+  // Single line comment
+  booleanArgument;
+
+  nullArgument;
+
+  numberArgument;
+
+  objectArgument;
+
+  stringArgument;
+
+  symbolArgument;
+
+  undefinedArgument;
+
+  actionArgument;
+
+  classicActionArgument;
+
+  elementArgument;
+
+  nodeArgument;
+
+  classArgument;
+
+  optionalArgument;
+
+  arrayArgument;
+
+  oneArgument;
+
+  shapeArgument;
+
+  unionArgument;
+
+  nestedArgument;
 }

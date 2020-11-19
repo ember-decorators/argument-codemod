@@ -6,12 +6,20 @@ import {
 } from '@ember-decorators/argument/types';
 
 class MyClass {}
+const myClassInstance = new MyClass();
 
 class Foo extends Component {
+  /**
+   * A multi-line comment
+   * @type {'any'}
+   */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   @argument
   @type('any')
   anyArgument = NaN;
 
+  // Single line comment
   @argument
   @type('boolean')
   booleanArgument = true;

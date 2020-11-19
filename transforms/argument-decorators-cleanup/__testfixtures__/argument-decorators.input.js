@@ -12,6 +12,8 @@ class Foo extends Component {
    * A multi-line comment
    * @type {'any'}
    */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   @argument('any')
   anyArgument;
 

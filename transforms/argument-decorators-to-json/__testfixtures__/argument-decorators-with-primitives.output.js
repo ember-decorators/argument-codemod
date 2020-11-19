@@ -1,75 +1,52 @@
-module.exports = {
-  "componentFileName": "argument-decorators-with-primitives.js",
+import {
+  Action,
+  ClassicAction,
+  Element,
+  Node
+} from '@ember-decorators/argument/types';
 
-  "arguments": {
-    "anyArgument": {
-      "type": "StringLiteral",
-      "value": "any"
-    },
+class MyClass {}
 
-    "booleanArgument": {
-      "type": "StringLiteral",
-      "value": "boolean"
-    },
+class Foo extends Component {
+  @argument('any')
+  anyArgument;
 
-    "nullArgument": {
-      "type": "StringLiteral",
-      "value": "null"
-    },
+  @argument('boolean')
+  booleanArgument;
 
-    "numberArgument": {
-      "type": "StringLiteral",
-      "value": "number"
-    },
+  @argument('null')
+  nullArgument;
 
-    "objectArgument": {
-      "type": "StringLiteral",
-      "value": "object"
-    },
+  @argument('number')
+  numberArgument;
 
-    "stringArgument": {
-      "type": "StringLiteral",
-      "value": "string"
-    },
+  @argument('object')
+  objectArgument;
 
-    "symbolArgument": {
-      "type": "StringLiteral",
-      "value": "symbol"
-    },
+  @argument('string')
+  stringArgument;
 
-    "undefinedArgument": {
-      "type": "StringLiteral",
-      "value": "undefined"
-    },
+  @argument('symbol')
+  symbolArgument;
 
-    "functionArgument": {
-      "type": "Identifier",
-      "value": "Function"
-    },
+  @argument(Function)
+  functionArgument() {}
 
-    "actionArgument": {
-      "type": "Identifier",
-      "value": "Action"
-    },
+  @argument('undefined')
+  undefinedArgument;
 
-    "classicActionArgument": {
-      "type": "Identifier",
-      "value": "ClassicAction"
-    },
+  @argument(Action)
+  actionArgument;
 
-    "elementArgument": {
-      "type": "Identifier",
-      "value": "Element"
-    },
+  @argument(ClassicAction)
+  classicActionArgument;
 
-    "nodeArgument": {
-      "type": "Identifier",
-      "value": "Node"
-    },
+  @argument(Element)
+  elementArgument;
 
-    "classArgument": {
-      "type": "Identifier",
-      "value": "MyClass"
-    }
-  }
-};
+  @argument(Node)
+  nodeArgument;
+
+  @argument(MyClass)
+  classArgument;
+}

@@ -1,106 +1,26 @@
-module.exports = {
-  "componentFileName": "argument-decorators-with-helpers.js",
+class Foo extends Component {
+  @argument(optional(Date))
+  optionalArgument;
 
-  "arguments": {
-    "optionalArgument": {
-      "type": "CallExpression",
-      "value": "optional",
-      "args": [
-        {
-          "type": "Identifier",
-          "value": "Date"
-        },
-      ]
-    },
+  @argument(arrayOf('string'))
+  arrayArgument;
 
-    "arrayArgument": {
-      "type": "CallExpression",
-      "value": "arrayOf",
-      "args": [
-        {
-          "type": "StringLiteral",
-          "value": "StringLiteral"
-        },
-      ]
-    },
+  @argument(oneOf('red', 'blue', 'yellow'))
+  oneArgument;
 
-    "oneArgument": {
-      "type": "CallExpression",
-      "value": "oneOf",
-      "args": [
-        {
-          "type": "StringLiteral",
-          "value": "red"
-        },
-        {
-          "type": "StringLiteral",
-          "value": "blue"
-        },
-        {
-          "type": "StringLiteral",
-          "value": "yellow"
-        }
-      ]
-    },
+  @argument(unionOf('number', 'string'))
+  unionArgument;
 
-    "unionArgument": {
-      "type": "CallExpression",
-      "value": "unionOf",
-      "args": [
-        {
-          "type": "StringLiteral",
-          "value": "number"
-        },
-        {
-          "type": "StringLiteral",
-          "value": "StringLiteral"
-        },
-      ]
-    },
+  @argument(shapeOf({ id: 'string' }))
+  shapeArgument;
 
-    "shapeArgument": {
-      "type": "CallExpression",
-      "value": "shapeOf",
-      "args": [
-        {
-          "type": "ObjectExpression",
-          "value": {
-            "id": {
-              "type": "StringLiteral",
-              "value": "StringLiteral"
-            },
-          }
-        }
-      ]
-    },
-
-    "nestedArgument": {
-      "type": "CallExpression",
-      "value": "unionOf",
-      "args": [
-        {
-          "type": "StringLiteral",
-          "value": "StringLiteral"
-        },
-        {
-          "type": "CallExpression",
-          "value": "shapeOf",
-          "args": [
-            {
-              "id": {
-                "type": "CallExpression",
-                "value": "optional",
-                "args": [
-                  {
-                    "type": "StringLiteral",
-                    "value": "StringLiteral"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    }
-  }
-};
+  @argument(
+    unionOf(
+      'string',
+      shapeOf({
+        id: optional('string')
+      })
+    )
+  )
+  nestedArgument;
+}
