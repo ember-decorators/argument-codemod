@@ -13,25 +13,33 @@ module.exports = function ({ path, source }, { parse, visit }) {
     let { builders: b } = env.syntax;
 
     // Build out the positional arguments for the arg-type helper
-    const parseArgTypes = function parseArgTypes({ type, value, args } = {}) {
+    const parseArgTypes = function parseArgTypes({ type, value, args, isOptional } = {}) {
       const templateArgs = [];
+
+      function addTemplateArg(block) {
+        if (isOptional) {
+          templateArgs.push(b.sexpr(b.path('optional'), [block]));
+        } else {
+          templateArgs.push(block);
+        }
+      }
 
       if (type === 'Identifier') {
         switch (value) {
           case 'Function':
           case 'ClosureAction':
-            templateArgs.push(b.string('function'));
+            addTemplateArg(b.string('function'));
             break;
           case 'Promise':
-            templateArgs.push(b.string('object'));
+            addTemplateArg(b.string('object'));
             break;
           default:
-            templateArgs.push(b.string('__UNKNOWN_TYPE__'));
+            addTemplateArg(b.string('__UNKNOWN_TYPE__'));
         }
       }
 
       if (type === 'StringLiteral') {
-        templateArgs.push(b.string(value));
+        addTemplateArg(b.string(value));
       }
 
       if (type === 'CallExpression') {
@@ -41,7 +49,7 @@ module.exports = function ({ path, source }, { parse, visit }) {
             return b.pair(key, parseArgTypes(val)[0]);
           });
 
-          templateArgs.push(b.sexpr(b.path(value), [], b.hash(pairs)));
+          addTemplateArg(b.sexpr(b.path(value), [], b.hash(pairs)));
         } else {
           // for each item in args, clall this func and set to posArgs
           const posArgs = args
@@ -50,7 +58,7 @@ module.exports = function ({ path, source }, { parse, visit }) {
             })
             .flat();
 
-          templateArgs.push(b.sexpr(b.path(value), posArgs));
+          addTemplateArg(b.sexpr(b.path(value), posArgs));
         }
       }
 

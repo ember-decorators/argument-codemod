@@ -21,7 +21,14 @@ const transformer = function transformer(file, api) {
   // Add an entry to the `argumentProperties` object for this class property whose value
   // is a map of the args passed to its type/argument decorators
   function parseClassProperty(classProperty) {
-    let propValue = {};
+    let propValue = {
+      isOptional: false,
+    };
+
+    // If the argument has a default value then we should mark it as optional
+    if (classProperty.value) {
+      propValue.isOptional = true;
+    }
 
     // loop through all the decorators applied to this classProperty and parse
     // out the type and args
