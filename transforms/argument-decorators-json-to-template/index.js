@@ -1,56 +1,90 @@
 const fs = require('fs');
 
-module.exports = function ({ source, path }, { parse, visit }) {
-  console.log( parse, visit );
-  // const ast = parse(source);
-  // const filename = path.substring(path.lastIndexOf('/') + 1).slice(0, -4);
-  // const argumentsJSON = fs.readFileSync('argument-decorators-to-json.json', {
-  //   encoding: 'utf8',
-  // });
+module.exports = function (env) {
+  const { filePath } = env;
+  const filename = filePath.substring(filePath.lastIndexOf('/') + 1).slice(0, -4);
+  const argumentsJSON = fs.readFileSync('argument-decorators-to-json.json', {
+    encoding: 'utf8',
+  });
 
-  // const argumentsData = JSON.parse(argumentsJSON);
-  // const data = argumentsData[filename] || {};
+  const b = env.syntax.builders;
 
-  // const buildArgTypeHelper = function buildArgTypeHelper(key, val) {
-  //   return b.mustache(
-  //     b.path('arg-type'),
-  //     [b.path(`@${key}`), getPositionalArgs(val)],
-  //     b.hash([b.pair('path', b.string(key))])
-  //   );
-  // };
+  const argumentsData = JSON.parse(argumentsJSON);
+  const data = argumentsData[filename] || {};
 
-  // const getPositionalArgs = function getPositionalArgs({ type, value, args = [] }) {
-  //   if (type === 'StringLiteral') {
-  //     return b.string(value);
-  //   } else if (type === 'CallExpression') {
-  //     if (args && args.length) {
-  //       return b.sexpr(
-  //         b.path(value),
-  //         args.map((arg) => getPositionalArgs)
-  //       );
-  //     }
+  // Build out the positional arguments for the arg-type helper
+  const parseArgTypes = function parseArgTypes({ type, value, args, hash } = {}) {
+    const templateArgs = [];
 
-  //     return b.sexpr(b.path(value));
-  //   }
-  // };
+    if (type === 'Identifier') {
+      switch (value) {
+        case 'Function':
+        case 'ClosureAction':
+          templateArgs.push(b.string('function'));
+          break;
+        case 'Promise':
+          templateArgs.push(b.string('object'));
+          break;
+        default:
+          templateArgs.push(b.string('__UNKNOWN_TYPE__'));
+      }
+    }
 
-  // const argTypes = Object.entries(data.argumentProperties).reduce((_hash, [key, val]) => {
-  //   if (val.type === 'StringLiteral' || val.type === 'CallExpression') {
-  //     _hash.push(buildArgTypeHelper(key, val));
-  //     _hash.push(b.path('\n'));
-  //   } else if (val.type === 'Identifier') {
-  //     // TODO: return string interpretation of what to add once type is exported from class
-  //     //_hash.push(b.comment(`You need to export ${key}`));
-  //   }
+    if (type === 'StringLiteral') {
+      templateArgs.push(b.string(value));
+    }
 
-  //   return _hash;
-  // }, []);
+    if (type === 'CallExpression') {
+      if (value === 'shapeOf') {
+        const shape = args[0].value;
+        const pairs = Object.entries(shape).map(([key, val]) => {
+          return b.pair(key, parseArgTypes(val)[0]);
+        });
 
-  // return {
-  //   Template(node) {
-  //     node.body = argTypes.concat([b.path('\n'), ...node.body]);
-  //   },
-  // };
+        templateArgs.push(b.sexpr(b.path(value), [], b.hash(pairs)));
+      } else {
+        // for each item in args, clall this func and set to posArgs
+        const posArgs = args
+          .map((arg) => {
+            return parseArgTypes(arg);
+          })
+          .flat();
+
+        templateArgs.push(b.sexpr(b.path(value), posArgs));
+      }
+    }
+
+    return templateArgs;
+  };
+
+  // Create the arg-type helper for a given argument property
+  const buildArgTypeHelper = function buildArgTypeHelper(key, val) {
+    const args = parseArgTypes(val);
+    return b.mustache(
+      b.path('arg-type'),
+      [b.path(`@${key}`), ...args],
+      b.hash([b.pair('path', b.string(key))])
+    );
+  };
+
+  // Get each arg-type helper, add a newline after it, and return the collection of all helpers
+  const argTypes = Object.entries(data.argumentProperties).reduce((_hash, [key, val]) => {
+    _hash.push(buildArgTypeHelper(key, val));
+    _hash.push(b.path('\n'));
+    return _hash;
+  }, []);
+
+  // Update AST
+  return {
+    Template(node) {
+      // If there are any arg-types at the top of the file we can assume this has already been run
+      if (
+        !(node.body[0].type === 'MustacheStatement' && node.body[0].path.original === 'arg-type')
+      ) {
+        node.body = argTypes.concat([b.path('\n'), ...node.body]);
+      }
+    },
+  };
 };
 
 module.exports.type = 'hbs';

@@ -47,6 +47,8 @@ class Foo extends Component {
    * A multi-line comment
    * @type {'any'}
    */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   @argument('any')
   anyArgument = NaN;
 
@@ -111,6 +113,8 @@ class Foo extends Component {
 **Output** (<small>[argument-decorators-with-defaults.output.js](transforms/argument-decorators-cleanup/__testfixtures__/argument-decorators-with-defaults.output.js)</small>):
 ```js
 import {
+  Action,
+  ClassicAction,
   Element,
   Node
 } from '@ember-decorators/argument/types';
@@ -119,16 +123,12 @@ class MyClass {}
 const myClassInstance = new MyClass();
 
 class Foo extends Component {
-  // begin: ember-argument-types class references
-  __Element = Element;
-  __Node = Node;
-  __MyClass = MyClass;
-  // end: ember-argument-types class references
-
   /**
    * A multi-line comment
    * @type {'any'}
    */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   anyArgument = NaN;
 
   // Single line comment
@@ -189,6 +189,8 @@ class Foo extends Component {
    * A multi-line comment
    * @type {'any'}
    */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   @argument('any')
   anyArgument;
 
@@ -253,6 +255,8 @@ class Foo extends Component {
 **Output** (<small>[argument-decorators.output.js](transforms/argument-decorators-cleanup/__testfixtures__/argument-decorators.output.js)</small>):
 ```js
 import {
+  Action,
+  ClassicAction,
   Element,
   Node
 } from '@ember-decorators/argument/types';
@@ -260,11 +264,50 @@ import {
 class MyClass {}
 
 class Foo extends Component {
-  // begin: ember-argument-types class references
-  __Element = Element;
-  __Node = Node;
-  __MyClass = MyClass;
-  // end: ember-argument-types class references
+  /**
+   * A multi-line comment
+   * @type {'any'}
+   */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
+  anyArgument;
+
+  // Single line comment
+  booleanArgument;
+
+  nullArgument;
+
+  numberArgument;
+
+  objectArgument;
+
+  stringArgument;
+
+  symbolArgument;
+
+  undefinedArgument;
+
+  actionArgument;
+
+  classicActionArgument;
+
+  elementArgument;
+
+  nodeArgument;
+
+  classArgument;
+
+  optionalArgument;
+
+  arrayArgument;
+
+  oneArgument;
+
+  shapeArgument;
+
+  unionArgument;
+
+  nestedArgument;
 }
 
 ```
@@ -281,12 +324,20 @@ import {
 } from '@ember-decorators/argument/types';
 
 class MyClass {}
+const myClassInstance = new MyClass();
 
 class Foo extends Component {
+  /**
+   * A multi-line comment
+   * @type {'any'}
+   */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   @argument
   @type('any')
   anyArgument = NaN;
 
+  // Single line comment
   @argument
   @type('boolean')
   booleanArgument = true;
@@ -364,6 +415,8 @@ class Foo extends Component {
 **Output** (<small>[type-decorators-with-defaults.output.js](transforms/argument-decorators-cleanup/__testfixtures__/type-decorators-with-defaults.output.js)</small>):
 ```js
 import {
+  Action,
+  ClassicAction,
   Element,
   Node
 } from '@ember-decorators/argument/types';
@@ -372,16 +425,12 @@ class MyClass {}
 const myClassInstance = new MyClass();
 
 class Foo extends Component {
-  // begin: ember-argument-types class references
-  __Element = Element;
-  __Node = Node;
-  __MyClass = MyClass;
-  // end: ember-argument-types class references
-
   /**
    * A multi-line comment
    * @type {'any'}
    */
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   anyArgument = NaN;
 
   // Single line comment
@@ -438,6 +487,8 @@ import {
 class MyClass {}
 
 class Foo extends Component {
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
   @argument
   @type('any')
   anyArgument;
@@ -519,6 +570,8 @@ class Foo extends Component {
 **Output** (<small>[type-decorators.output.js](transforms/argument-decorators-cleanup/__testfixtures__/type-decorators.output.js)</small>):
 ```js
 import {
+  Action,
+  ClassicAction,
   Element,
   Node
 } from '@ember-decorators/argument/types';
@@ -526,11 +579,45 @@ import {
 class MyClass {}
 
 class Foo extends Component {
-  // begin: ember-argument-types class references
-  __Element = Element;
-  __Node = Node;
-  __MyClass = MyClass;
-  // end: ember-argument-types class references
+  @someOtherDecorator
+  @someOtherDecoratorFunction('yo')
+  anyArgument;
+
+  booleanArgument;
+
+  nullArgument;
+
+  numberArgument;
+
+  objectArgument;
+
+  stringArgument;
+
+  symbolArgument;
+
+  undefinedArgument;
+
+  actionArgument;
+
+  classicActionArgument;
+
+  elementArgument;
+
+  nodeArgument;
+
+  classArgument;
+
+  optionalArgument;
+
+  arrayArgument;
+
+  oneArgument;
+
+  shapeArgument;
+
+  unionArgument;
+
+  nestedArgument;
 }
 
 ```
