@@ -1,16 +1,15 @@
 const fs = require('fs');
 
 module.exports = function (env) {
-  const { filePath } = env;
+  const { filePath, syntax } = env;
+  const b = syntax.builders;
   const filename = filePath.substring(filePath.lastIndexOf('/') + 1).slice(0, -4);
   const argumentsJSON = fs.readFileSync('argument-decorators-to-json.json', {
     encoding: 'utf8',
   });
 
-  const b = env.syntax.builders;
-
   const argumentsData = JSON.parse(argumentsJSON);
-  const data = argumentsData[filename] || {};
+  const data = argumentsData[filename] ? argumentsData[filename].argumentProperties : {};
 
   // Build out the positional arguments for the arg-type helper
   const parseArgTypes = function parseArgTypes({ type, value, args, hash } = {}) {
@@ -68,7 +67,7 @@ module.exports = function (env) {
   };
 
   // Get each arg-type helper, add a newline after it, and return the collection of all helpers
-  const argTypes = Object.entries(data.argumentProperties).reduce((_hash, [key, val]) => {
+  const argTypes = Object.entries(data).reduce((_hash, [key, val]) => {
     _hash.push(buildArgTypeHelper(key, val));
     _hash.push(b.path('\n'));
     return _hash;
