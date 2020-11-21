@@ -17,7 +17,7 @@ module.exports = function ({ path, source }, { parse, visit }) {
       const templateArgs = [];
 
       function addTemplateArg(block) {
-        if (isOptional) {
+        if (isOptional && value !== 'optional') {
           templateArgs.push(b.sexpr(b.path('optional'), [block]));
         } else {
           templateArgs.push(block);

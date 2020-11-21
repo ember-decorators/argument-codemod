@@ -1,4 +1,5 @@
 const fs = require('fs');
+const kebabCase = require('lodash.kebabcase');
 const { getParser } = require('codemod-cli').jscodeshift;
 const { getOptions } = require('codemod-cli');
 const output = {};
@@ -48,7 +49,7 @@ const transformer = function transformer(file, api) {
         } else if (decoratorArg.type === 'Identifier') {
           value = decoratorArg.name;
         } else if (decoratorArg.type === 'CallExpression') {
-          value = decoratorArg.callee.name;
+          value = kebabCase(decoratorArg.callee.name);
           args = parseDecoratorArgs(decoratorArg.arguments);
         }
 
@@ -98,7 +99,7 @@ const transformer = function transformer(file, api) {
         // for each argument passed to the fun, parse out its value by calling this func
         return {
           type: arg.type,
-          value: arg.callee.name,
+          value: kebabCase(arg.callee.name),
           args: parseDecoratorArgs(arg.arguments),
         };
       }
