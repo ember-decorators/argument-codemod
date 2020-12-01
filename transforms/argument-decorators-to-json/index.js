@@ -27,7 +27,7 @@ const transformer = function transformer(file, api) {
     };
 
     // If the argument has a default value then we should mark it as optional
-    if (classProperty.value) {
+    if (classProperty.value || classProperty.type === 'ClassMethod') {
       propValue.isOptional = true;
     }
 
