@@ -1,12 +1,4 @@
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
-
 class MyClass {}
-
 class Foo extends Component {
   @argument
   @type('any')

@@ -34,6 +34,7 @@ module.exports = function ({ path, source }, { parse, visit }) {
             addTemplateArg(b.string('object'));
             break;
           default:
+            // TODO: have this output (instance-of this.__TheType) and expose `__TheType` in the class
             addTemplateArg(b.string('__UNKNOWN_TYPE__'));
         }
       }

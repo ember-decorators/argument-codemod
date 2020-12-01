@@ -1,9 +1,3 @@
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
 
 class MyClass {}
 
