@@ -30,12 +30,12 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 
 **Input** (<small>[arguments-with-helpers.input.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/arguments-with-helpers.input.hbs)</small>):
 ```hbs
-
+<div>Oh hey here's some template content</div>
 ```
 
 **Output** (<small>[arguments-with-helpers.output.hbs](transforms/argument-decorators-json-to-template/__testfixtures__/arguments-with-helpers.output.hbs)</small>):
 ```hbs
-{{arg-type @optionalArgument (optional (instance-of this.__Date)) path="optionalArgument"}}
+{{arg-type @optionalArgument "__UNKNOWN_TYPE__" path="optionalArgument"}}
 {{arg-type @arrayArgument (array-of 'string') path="arrayArgument"}}
 {{arg-type @oneArgument (one-of 'red' 'blue' 'yellow') path="oneArgument"}}
 {{arg-type @shapeArgument (shape-of id='string') path="shapeArgument"}}
@@ -63,10 +63,10 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 {{arg-type @symbolArgument "symbol" path="symbolArgument"}}
 {{arg-type @undefinedArgument "undefined" path="undefinedArgument"}}
 {{arg-type @actionArgument "function" path="actionArgument"}}
-{{arg-type @classicActionArgument (union-of "string", "function") path="classicActionArgument"}}
-{{arg-type @elementArgument (instance-of this.__Element) path="elementArgument"}}
-{{arg-type @nodeArgument (instance-of this.__Node) path="nodeArgument"}}
-{{arg-type @classArgument (instance-of this.__MyClass) path="classArgument"}}
+{{arg-type @classicActionArgument (union-of "string" "function") path="classicActionArgument"}}
+{{arg-type @elementArgument "__UNKNOWN_TYPE__" path="elementArgument"}}
+{{arg-type @nodeArgument "__UNKNOWN_TYPE__" path="nodeArgument"}}
+{{arg-type @classArgument "__UNKNOWN_TYPE__" path="classArgument"}}
 
 <div>Oh hey here's some template content</div>
 ```

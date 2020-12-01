@@ -112,12 +112,6 @@ class Foo extends Component {
 
 **Output** (<small>[argument-decorators-with-defaults.output.js](transforms/argument-decorators-cleanup/__testfixtures__/argument-decorators-with-defaults.output.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
 
 class MyClass {}
 const myClassInstance = new MyClass();
@@ -254,12 +248,6 @@ class Foo extends Component {
 
 **Output** (<small>[argument-decorators.output.js](transforms/argument-decorators-cleanup/__testfixtures__/argument-decorators.output.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
 
 class MyClass {}
 
@@ -414,12 +402,6 @@ class Foo extends Component {
 
 **Output** (<small>[type-decorators-with-defaults.output.js](transforms/argument-decorators-cleanup/__testfixtures__/type-decorators-with-defaults.output.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
 
 class MyClass {}
 const myClassInstance = new MyClass();
@@ -569,12 +551,6 @@ class Foo extends Component {
 
 **Output** (<small>[type-decorators.output.js](transforms/argument-decorators-cleanup/__testfixtures__/type-decorators.output.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
 
 class MyClass {}
 

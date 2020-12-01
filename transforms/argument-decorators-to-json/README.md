@@ -91,15 +91,7 @@ class Foo extends Component {
 
 **Input** (<small>[argument-decorators-with-primitives.input.js](transforms/argument-decorators-to-json/__testfixtures__/argument-decorators-with-primitives.input.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
-
 class MyClass {}
-
 class Foo extends Component {
   @argument('any')
   anyArgument;
@@ -148,15 +140,7 @@ class Foo extends Component {
 
 **Output** (<small>[argument-decorators-with-primitives.output.js](transforms/argument-decorators-to-json/__testfixtures__/argument-decorators-with-primitives.output.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
-
 class MyClass {}
-
 class Foo extends Component {
   @argument('any')
   anyArgument;
@@ -285,15 +269,7 @@ class Foo extends Component {
 
 **Input** (<small>[type-decorators-with-primitives.input.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorators-with-primitives.input.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
-
 class MyClass {}
-
 class Foo extends Component {
   @argument
   @type('any')
@@ -358,15 +334,7 @@ class Foo extends Component {
 
 **Output** (<small>[type-decorators-with-primitives.output.js](transforms/argument-decorators-to-json/__testfixtures__/type-decorators-with-primitives.output.js)</small>):
 ```js
-import {
-  Action,
-  ClassicAction,
-  Element,
-  Node
-} from '@ember-decorators/argument/types';
-
 class MyClass {}
-
 class Foo extends Component {
   @argument
   @type('any')
