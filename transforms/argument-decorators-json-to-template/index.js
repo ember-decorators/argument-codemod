@@ -24,6 +24,10 @@ module.exports = function ({ path, source }, { parse, visit }) {
         }
       }
 
+      if (type === 'StringLiteral' || type === 'NullLiteral') {
+        addTemplateArg(b.string(value));
+      }
+
       if (type === 'Identifier') {
         switch (value) {
           case 'Function':
@@ -41,10 +45,6 @@ module.exports = function ({ path, source }, { parse, visit }) {
             // TODO: have this output (instance-of this.__TheType) and expose `__TheType` in the class
             addTemplateArg(b.string('__UNKNOWN_TYPE__'));
         }
-      }
-
-      if (type === 'StringLiteral') {
-        addTemplateArg(b.string(value));
       }
 
       if (type === 'CallExpression') {

@@ -1,6 +1,6 @@
 {
   "argument-decorators-with-helpers.input": {
-    "path": "./transforms/argument-decorators-to-json/__testfixtures__/argument-decorators-with-helpers.input.js",
+    "path": "transforms/argument-decorators-to-json/__testfixtures__/argument-decorators-with-helpers.input.js",
     "argumentProperties": {
       "optionalArgument": {
         "isOptional": false,
@@ -55,6 +55,10 @@
           {
             "type": "StringLiteral",
             "value": "string"
+          },
+          {
+            "type": "NullLiteral",
+            "value": "null"
           }
         ]
       },

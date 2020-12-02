@@ -84,6 +84,11 @@ const transformer = function transformer(file, api) {
           type: arg.type,
           value: arg.name,
         };
+      } else if (arg.type === 'NullLiteral') {
+        return {
+          type: arg.type,
+          value: 'null',
+        };
       } else if (arg.type === 'ObjectExpression') {
         const value = {};
         arg.properties.forEach((prop) => {
