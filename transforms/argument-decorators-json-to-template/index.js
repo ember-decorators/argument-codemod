@@ -28,7 +28,11 @@ module.exports = function ({ path, source }, { parse, visit }) {
         switch (value) {
           case 'Function':
           case 'ClosureAction':
+          case 'Action':
             addTemplateArg(b.string('function'));
+            break;
+          case 'ClassicAction':
+            addTemplateArg(b.sexpr(b.path('union-of'), [b.string('function'), b.string('string')]));
             break;
           case 'Promise':
             addTemplateArg(b.string('object'));
@@ -44,7 +48,7 @@ module.exports = function ({ path, source }, { parse, visit }) {
       }
 
       if (type === 'CallExpression') {
-        if (value === 'shapeOf') {
+        if (value === 'shape-of') {
           const shape = args[0].value;
           const pairs = Object.entries(shape).map(([key, val]) => {
             return b.pair(key, parseArgTypes(val)[0]);
