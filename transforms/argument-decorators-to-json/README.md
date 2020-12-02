@@ -37,7 +37,7 @@ class Foo extends Component {
   @argument(oneOf('red', 'blue', 'yellow'))
   oneArgument;
 
-  @argument(unionOf('number', 'string'))
+  @argument(unionOf('number', 'string', null))
   unionArgument;
 
   @argument(shapeOf({ id: 'string' }))
@@ -68,7 +68,7 @@ class Foo extends Component {
   @argument(oneOf('red', 'blue', 'yellow'))
   oneArgument;
 
-  @argument(unionOf('number', 'string'))
+  @argument(unionOf('number', 'string', null))
   unionArgument;
 
   @argument(shapeOf({ id: 'string' }))
