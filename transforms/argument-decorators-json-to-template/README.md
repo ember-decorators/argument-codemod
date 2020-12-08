@@ -38,7 +38,7 @@ node ./bin/cli.js argument-decorators-json-to-template path/of/files/ or/some**/
 {{arg-type @optionalArgument (optional "__UNKNOWN_TYPE__") path="optionalArgument"}}
 {{arg-type @arrayArgument (array-of "string") path="arrayArgument"}}
 {{arg-type @oneArgument (one-of "red" "blue" "yellow") path="oneArgument"}}
-{{arg-type @unionArgument (union-of "number" "string") path="unionArgument"}}
+{{arg-type @unionArgument (union-of "number" "string" "null") path="unionArgument"}}
 {{arg-type @shapeArgument (shape-of id="string") path="shapeArgument"}}
 {{arg-type @nestedArgument (union-of "string" (shape-of id=(optional "string"))) path="nestedArgument"}}
 
