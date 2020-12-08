@@ -1,0 +1,77 @@
+{
+  "type-decorators-with-primitives.input": {
+    "path": "transforms/argument-decorators-to-json/__testfixtures__/type-decorators-with-primitives.input.js",
+    "argumentProperties": {
+      "anyArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "any"
+      },
+      "booleanArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "boolean"
+      },
+      "nullArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "null"
+      },
+      "numberArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "number"
+      },
+      "objectArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "object"
+      },
+      "stringArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "string"
+      },
+      "symbolArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "symbol"
+      },
+      "undefinedArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "undefined"
+      },
+      "functionArgument": {
+        "isOptional": true,
+        "type": "Identifier",
+        "value": "Function"
+      },
+      "actionArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Action"
+      },
+      "classicActionArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "ClassicAction"
+      },
+      "elementArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Element"
+      },
+      "nodeArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Node"
+      },
+      "classArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "MyClass"
+      }
+    }
+  }
+}

@@ -1,0 +1,378 @@
+{
+  "argument-decorators-with-helpers": {
+    "path": "transforms/argument-decorators-to-json/__testfixtures__/argument-decorators-with-helpers.js",
+    "argumentProperties": {
+      "optionalArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "optional",
+        "args": [
+          {
+            "type": "Identifier",
+            "value": "Date"
+          }
+        ]
+      },
+      "arrayArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "array-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "string"
+          }
+        ]
+      },
+      "oneArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "one-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "red"
+          },
+          {
+            "type": "StringLiteral",
+            "value": "blue"
+          },
+          {
+            "type": "StringLiteral",
+            "value": "yellow"
+          }
+        ]
+      },
+      "unionArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "union-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "number"
+          },
+          {
+            "type": "StringLiteral",
+            "value": "string"
+          },
+          {
+            "type": "NullLiteral",
+            "value": "null"
+          }
+        ]
+      },
+      "shapeArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "shape-of",
+        "args": [
+          {
+            "type": "ObjectExpression",
+            "value": {
+              "id": {
+                "type": "StringLiteral",
+                "value": "string"
+              }
+            }
+          }
+        ]
+      },
+      "nestedArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "union-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "string"
+          },
+          {
+            "type": "CallExpression",
+            "value": "shape-of",
+            "args": [
+              {
+                "type": "ObjectExpression",
+                "value": {
+                  "id": {
+                    "type": "CallExpression",
+                    "value": "optional",
+                    "args": [
+                      {
+                        "type": "StringLiteral",
+                        "value": "string"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "argument-decorators-with-primitives": {
+    "path": "transforms/argument-decorators-to-json/__testfixtures__/argument-decorators-with-primitives.js",
+    "argumentProperties": {
+      "anyArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "any"
+      },
+      "booleanArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "boolean"
+      },
+      "nullArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "null"
+      },
+      "numberArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "number"
+      },
+      "objectArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "object"
+      },
+      "stringArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "string"
+      },
+      "symbolArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "symbol"
+      },
+      "functionArgument": {
+        "isOptional": true,
+        "type": "Identifier",
+        "value": "Function"
+      },
+      "undefinedArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "undefined"
+      },
+      "actionArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Action"
+      },
+      "classicActionArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "ClassicAction"
+      },
+      "elementArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Element"
+      },
+      "nodeArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Node"
+      },
+      "classArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "MyClass"
+      }
+    }
+  },
+  "type-decorators-with-helpers": {
+    "path": "transforms/argument-decorators-to-json/__testfixtures__/type-decorators-with-helpers.js",
+    "argumentProperties": {
+      "optionalArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "optional",
+        "args": [
+          {
+            "type": "Identifier",
+            "value": "Date"
+          }
+        ]
+      },
+      "arrayArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "array-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "string"
+          }
+        ]
+      },
+      "oneArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "one-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "red"
+          },
+          {
+            "type": "StringLiteral",
+            "value": "blue"
+          },
+          {
+            "type": "StringLiteral",
+            "value": "yellow"
+          }
+        ]
+      },
+      "unionArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "union-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "number"
+          },
+          {
+            "type": "StringLiteral",
+            "value": "string"
+          }
+        ]
+      },
+      "shapeArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "shape-of",
+        "args": [
+          {
+            "type": "ObjectExpression",
+            "value": {
+              "id": {
+                "type": "StringLiteral",
+                "value": "string"
+              }
+            }
+          }
+        ]
+      },
+      "nestedArgument": {
+        "isOptional": false,
+        "type": "CallExpression",
+        "value": "union-of",
+        "args": [
+          {
+            "type": "StringLiteral",
+            "value": "string"
+          },
+          {
+            "type": "CallExpression",
+            "value": "shape-of",
+            "args": [
+              {
+                "type": "ObjectExpression",
+                "value": {
+                  "id": {
+                    "type": "CallExpression",
+                    "value": "optional",
+                    "args": [
+                      {
+                        "type": "StringLiteral",
+                        "value": "string"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "type": "StringLiteral",
+                    "value": "string"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "type-decorators-with-primitives": {
+    "path": "transforms/argument-decorators-to-json/__testfixtures__/type-decorators-with-primitives.js",
+    "argumentProperties": {
+      "anyArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "any"
+      },
+      "booleanArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "boolean"
+      },
+      "nullArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "null"
+      },
+      "numberArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "number"
+      },
+      "objectArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "object"
+      },
+      "stringArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "string"
+      },
+      "symbolArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "symbol"
+      },
+      "undefinedArgument": {
+        "isOptional": false,
+        "type": "StringLiteral",
+        "value": "undefined"
+      },
+      "functionArgument": {
+        "isOptional": true,
+        "type": "Identifier",
+        "value": "Function"
+      },
+      "actionArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Action"
+      },
+      "classicActionArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "ClassicAction"
+      },
+      "elementArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Element"
+      },
+      "nodeArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "Node"
+      },
+      "classArgument": {
+        "isOptional": false,
+        "type": "Identifier",
+        "value": "MyClass"
+      }
+    }
+  }
+}
