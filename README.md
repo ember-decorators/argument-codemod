@@ -12,9 +12,10 @@ Why would you do this? If you're using `@ember-decorators/argument` decorators t
 
 Note, if you don't want/need component argument type checking, you can run just the third transform to remove the decorators without adding the `arg-type` helpers to templates.
 
-## Known limitations
+## Known limitations/caveats
 
 - Component names must be unique (doesn't account for nested component paths)
+- Custom class types are not supported, but are processed into `__UNKNOWN_TYPE__` strings since it's not always clear how the user intends to deal with these cases. What this means is that after running the transforms, you will want to do a string search for `__UNKNOWN_TYPE__` and either comment out the helper or export the class from the component js and replace the `__UNKNOWN_TYPE__` string with a reference to the actual class as an argument to the `instance-of` helper, eg. `(instance-of this.MyClass)`.
 - Decorator values can't be references. For example `let obj = {}; @argument(shapeOf(obj))` will throw an error.
 - The path to the `argument-decorators-to-json.json` file is not configurable and the file will be generated in the dir where the command is run.
 
