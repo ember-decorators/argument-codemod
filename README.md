@@ -4,9 +4,9 @@ A collection of codemods for migrating from [@ember-decorators/argument](https:/
 
 This set of codemods are to be used together in sequential order to:
 
-1. Create a json map of component properties which use `argument` and `type` decorators provided by `@ember-decorators/argument`.
-2. Use the map generated in step one to populate `arg-type` helpers provided by `ember-argument-types` in the associated template.
-3. Remove `argument` and `type` decorators and their imports from the component js class and optionally add the `@classic` decorator to the class.
+1. argument-decorators-to-json: Create a json map of component properties which use `argument` and `type` decorators provided by `@ember-decorators/argument`.
+2. argument-decorators-json-to-template: Use the map generated in step one to populate `arg-type` helpers provided by `ember-argument-types` in the associated template.
+3. argument-decorators-cleanup: Remove `argument` and `type` decorators and their imports from the component js class and optionally add the `@classic` decorator to the class.
 
 Why would you do this? If you're using `@ember-decorators/argument` decorators they will prevent you from upgrading your ember version beyond 2.12. The goal of this codemod is to unblock the upgrade path while still maintaining the ability to dynamically type check the arguments being passed to your component.
 
